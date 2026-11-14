@@ -1,155 +1,1258 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#11110f">
-  <meta name="description" content="Найдётся — тщательно подобранные идеи покупок и поиск по магазинам России.">
-  <title>Найдётся — вещи, которые находят вас</title>
+  <meta name="description" content="Найдётся — каталог идей покупок по магазинам России с подборками, фильтрами и картинками товаров.">
+  <title>Найдётся — подборки покупок</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{color-scheme:dark;--bg:#11110f;--panel:#191916;--panel-2:#201f1a;--ink:#f2efe7;--muted:#a19e94;--line:#343229;--gold:#d8bf87;--gold-deep:#a78a54;--accent:#e7d6ad;--shadow:0 22px 65px #0005;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
-    :root[data-theme=light]{color-scheme:light;--bg:#f4f1e9;--panel:#fffdf8;--panel-2:#f8f5ed;--ink:#24221c;--muted:#716d62;--line:#ded8ca;--gold:#8b6d35;--gold-deep:#725728;--accent:#4a3a1c;--shadow:0 22px 65px #5c4d2a12}
-    @media(prefers-color-scheme:light){:root:not([data-theme=dark]){color-scheme:light;--bg:#f4f1e9;--panel:#fffdf8;--panel-2:#f8f5ed;--ink:#24221c;--muted:#716d62;--line:#ded8ca;--gold:#8b6d35;--gold-deep:#725728;--accent:#4a3a1c;--shadow:0 22px 65px #5c4d2a12}}
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font:400 15px/1.6 var(--sans);-webkit-font-smoothing:antialiased}body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 75% 4%,color-mix(in srgb,var(--gold) 12%,transparent),transparent 32%),radial-gradient(ellipse at 5% 48%,#92724b0a,transparent 30%)}button,input,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-    .shell{width:min(1120px,100% - 48px);margin:auto}.masthead{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brandmark{display:flex;align-items:center;gap:12px;text-decoration:none}.monogram{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font:500 19px var(--serif)}.brandname{font:500 22px var(--serif);letter-spacing:.04em}.top-actions{display:flex;align-items:center;gap:13px}.edition{color:var(--muted);font-size:11px;letter-spacing:.14em;text-transform:uppercase}.theme-toggle{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:var(--panel);color:var(--ink);cursor:pointer}
-    .hero{position:relative;min-height:390px;padding:76px 0 57px;display:flex;align-items:center;border-bottom:1px solid var(--line);overflow:hidden}.hero-copy{position:relative;z-index:1;max-width:660px}.eyebrow{display:flex;align-items:center;gap:10px;color:var(--gold);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}.eyebrow:before{content:"";width:29px;height:1px;background:var(--gold)}h1{max-width:650px;margin:21px 0 16px;font:400 clamp(50px,8vw,88px)/.99 var(--serif);letter-spacing:-.04em}h1 em{color:var(--gold);font-weight:400}.hero-copy>p{max-width:510px;margin:0;color:var(--muted);font-size:16px}.hero-ornament{position:absolute;right:5%;top:50%;width:310px;transform:translateY(-50%);color:var(--gold);opacity:.62}.hero-note{display:flex;gap:18px;margin-top:27px;color:var(--muted);font-size:11px;letter-spacing:.03em}.hero-note span:before{content:"✳";margin-right:7px;color:var(--gold)}
-    .search-section{position:sticky;top:0;z-index:6;padding:14px 0;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid color-mix(in srgb,var(--line) 75%,transparent)}.searchbar{display:flex;gap:10px}.searchbox{position:relative;flex:1}.searchbox:before{content:"⌕";position:absolute;left:19px;top:8px;color:var(--gold);font:30px var(--serif);pointer-events:none}.searchbox input{width:100%;height:52px;padding:0 18px 0 51px;border:1px solid var(--line);border-radius:3px;background:var(--panel);color:var(--ink);font-size:14px}.searchbox input::placeholder{color:var(--muted)}.gold-button{min-height:52px;padding:0 25px;border:1px solid var(--gold);border-radius:3px;background:var(--gold);color:#17150f;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}.gold-button:hover{background:transparent;color:var(--gold)}.categories{display:flex;gap:8px;overflow:auto;padding:14px 0 2px;scrollbar-width:none}.categories::-webkit-scrollbar{display:none}.chip{flex:none;padding:7px 13px;border:1px solid var(--line);border-radius:2px;background:transparent;color:var(--muted);font-size:11px;cursor:pointer;transition:.2s}.chip:hover,.chip[aria-pressed=true]{border-color:var(--gold);color:var(--gold);background:color-mix(in srgb,var(--gold) 7%,transparent)}
-    .filters{display:flex;flex-wrap:wrap;align-items:end;gap:12px;padding:18px 0 7px}.filter{display:grid;gap:5px}.filter label{color:var(--muted);font-size:10px;letter-spacing:.11em;text-transform:uppercase}.filter input,.filter select{height:39px;min-width:120px;padding:0 11px;border:1px solid var(--line);border-radius:2px;background:var(--panel);color:var(--ink);font-size:12px}.filter input[type=number]{width:135px}.filter select{min-width:160px}.reset{height:39px;padding:0 12px;border:1px solid var(--line);background:transparent;color:var(--gold);font-size:11px;cursor:pointer}.filter-note{margin-left:auto;color:var(--muted);font-size:11px}
-    .main-content{padding:42px 0 70px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:0 0 20px}.section-kicker{display:block;margin-bottom:6px;color:var(--gold);font-size:10px;font-weight:600;letter-spacing:.17em;text-transform:uppercase}.section-head h2{margin:0;font:400 clamp(29px,4vw,43px)/1.14 var(--serif);letter-spacing:-.025em}.section-head p{max-width:380px;margin:0;color:var(--muted);font-size:12px}.count{white-space:nowrap;color:var(--muted);font-size:11px}.results-top{padding:16px 0 20px;border-bottom:1px solid var(--line);color:var(--muted);font-size:12px}.results-top strong{color:var(--ink);font-weight:500}.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.product-card{position:relative;min-height:226px;padding:21px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(145deg,var(--panel-2),var(--panel));transition:transform .25s,border-color .25s,box-shadow .25s}.product-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--gold) 65%,var(--line));box-shadow:var(--shadow)}.product-card:after{content:attr(data-index);position:absolute;right:12px;top:-11px;color:color-mix(in srgb,var(--gold) 10%,transparent);font:600 80px var(--serif);pointer-events:none}.product-meta{position:relative;z-index:1;display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:10px;letter-spacing:.08em;text-transform:uppercase}.season-badge{color:var(--gold)}.product-card h3{position:relative;z-index:1;margin:24px 0 7px;font:500 22px/1.18 var(--serif)}.product-card p{position:relative;z-index:1;margin:0;color:var(--muted);font-size:11px}.product-bottom{position:relative;z-index:1;display:flex;align-items:end;justify-content:space-between;gap:10px;margin-top:23px}.estimate{font:500 17px var(--serif);white-space:nowrap}.estimate small{display:block;color:var(--muted);font:9px var(--sans)}.card-link{padding:8px 10px;border:1px solid var(--gold);color:var(--gold);font-size:10px;text-decoration:none;transition:.2s}.card-link:hover{background:var(--gold);color:#17150f}.empty{grid-column:1/-1;padding:35px;border:1px dashed var(--line);color:var(--muted);text-align:center}.seasonal{padding:39px 0 8px}.seasonal-intro{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:18px;padding:21px 24px;border:1px solid var(--line);background:linear-gradient(110deg,color-mix(in srgb,var(--gold) 10%,var(--panel)),var(--panel))}.seasonal-intro p{margin:0;color:var(--muted);font-size:12px}.seasonal-intro b{color:var(--ink);font:500 20px var(--serif)}.seasonal-grid .product-card{min-height:200px}.seasonal-grid .product-card h3{margin-top:19px;font-size:19px}.search-results{padding-top:48px}.store-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.store{display:flex;align-items:center;gap:12px;min-height:72px;padding:12px 14px;border:1px solid var(--line);background:var(--panel);text-decoration:none;transition:border-color .2s,transform .2s}.store:hover{border-color:var(--gold);transform:translateY(-2px)}.store-initial{width:35px;height:35px;flex:none;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--gold);font:500 16px var(--serif)}.store-info{min-width:0;flex:1}.store-info b{display:block;font-size:12px}.store-info span{display:block;overflow:hidden;color:var(--muted);font-size:10px;text-overflow:ellipsis;white-space:nowrap}.store-arrow{color:var(--gold)}.inspiration{margin-top:46px;padding:25px;border:1px solid var(--line);background:var(--panel)}.inspiration-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}.inspiration h2{margin:0;font:400 26px var(--serif)}.inspiration p{margin:5px 0 0;color:var(--muted);font-size:12px}.random-button{min-height:42px;padding:0 15px;border:1px solid var(--gold);background:transparent;color:var(--gold);font-size:10px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}.random-button:hover{background:var(--gold);color:#17150f}.footer{padding:20px 0 28px;border-top:1px solid var(--line);color:var(--muted);font-size:10px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    @media(max-width:760px){.hero{min-height:350px}.hero-ornament{right:-70px;width:250px;opacity:.34}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.section-head{align-items:start;flex-direction:column}.section-head p{max-width:unset}.filter-note{width:100%;margin:0}.edition{display:none}}
-    @media(max-width:520px){.shell{width:calc(100% - 32px)}.masthead{height:68px}.hero{min-height:320px;padding:56px 0 38px}.hero-ornament{right:-85px;width:210px;opacity:.24}h1{max-width:390px;font-size:clamp(48px,14vw,68px)}.hero-copy>p{max-width:310px;font-size:14px}.hero-note{flex-direction:column;gap:5px}.search-section{padding:10px 0}.searchbar{gap:7px}.searchbox input{height:48px;padding-left:44px;font-size:12px}.searchbox:before{left:15px;top:5px}.gold-button{min-height:48px;padding:0 14px;font-size:10px}.categories{padding-top:10px}.filters{display:grid;grid-template-columns:1fr 1fr;gap:9px}.filter input[type=number],.filter select{width:100%;min-width:0}.reset{width:100%}.main-content{padding-top:32px}.product-grid{grid-template-columns:1fr 1fr;gap:8px}.product-card{min-height:218px;padding:14px}.product-card h3{font-size:18px;margin-top:25px}.product-card p{font-size:10px}.product-bottom{align-items:start;flex-direction:column;margin-top:18px}.estimate{font-size:15px}.card-link{font-size:9px}.product-card:after{font-size:64px}.seasonal-intro{align-items:start;flex-direction:column;padding:17px}.store-list{grid-template-columns:1fr}.inspiration{padding:18px}.inspiration-inner{align-items:start;flex-direction:column}.random-button{width:100%}}
-    @media(max-width:360px){.product-grid{grid-template-columns:1fr}.product-card{min-height:180px}.product-bottom{flex-direction:row;align-items:end}.hero-note{font-size:10px}}
-    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+    :root {
+      --bg: #11110f;
+      --bg2: #171612;
+      --panel: rgba(24, 23, 19, 0.92);
+      --panel-soft: rgba(31, 29, 23, 0.9);
+      --ink: #f6efe4;
+      --muted: #b3aa9a;
+      --line: rgba(255,255,255,0.08);
+      --gold: #d7bd87;
+      --gold2: #b48d4a;
+      --gold-soft: rgba(215,189,135,0.12);
+      --shadow: 0 24px 70px rgba(0,0,0,.32);
+      --success: #8ecf9c;
+      color-scheme: dark;
+    }
+
+    :root[data-theme="light"] {
+      --bg: #f7f3eb;
+      --bg2: #f2ebdf;
+      --panel: rgba(255,255,255,0.8);
+      --panel-soft: rgba(248, 244, 236, 0.88);
+      --ink: #1d1a16;
+      --muted: #666055;
+      --line: rgba(33, 29, 26, 0.12);
+      --gold: #8c6d38;
+      --gold2: #5d4226;
+      --gold-soft: rgba(140,109,56,0.12);
+      --shadow: 0 20px 60px rgba(74,58,27,0.12);
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top right, rgba(215,189,135,.15), transparent 18%),
+        radial-gradient(circle at bottom left, rgba(180,141,74,.10), transparent 20%),
+        var(--bg);
+      color: var(--ink);
+      font-family: 'Onest', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, select { font: inherit; }
+    button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+    .shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      background: color-mix(in srgb, var(--bg) 78%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 74px;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.1rem;
+      letter-spacing: .06em;
+      font-weight: 600;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .brand small {
+      opacity: .8;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-size: 10px;
+      font-family: 'Onest', Arial, sans-serif;
+      color: var(--muted);
+    }
+    .top-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .top-pill {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .theme-btn {
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      border-radius: 999px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 52px 0 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(260px, 420px);
+      gap: 28px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: 10px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 26px;
+      height: 1px;
+      background: var(--gold);
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(3.1rem, 9vw, 6rem);
+      line-height: .92;
+      letter-spacing: -.06em;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+    }
+    h1 strong {
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .subhead {
+      max-width: 620px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 26px;
+    }
+    .hero-stats div {
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      color: var(--muted);
+      min-width: 120px;
+    }
+    .hero-stats strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    .hero-art {
+      border: 1px solid var(--line);
+      background: linear-gradient(160deg, rgba(215,189,135,.18), rgba(255,255,255,.04));
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      min-height: 350px;
+    }
+    .hero-art::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,.10), transparent 35%),
+        linear-gradient(150deg, rgba(215,189,135,.06), rgba(255,255,255,0));
+      pointer-events: none;
+    }
+    .art-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      height: 100%;
+      min-height: 310px;
+    }
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255,255,255,.03);
+      position: relative;
+      min-height: 140px;
+    }
+    .mini-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.05) contrast(1.05);
+    }
+    .mini-card.large {
+      grid-column: 1 / -1;
+      min-height: 180px;
+    }
+    .mini-tag {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      background: rgba(17,17,15,.72);
+      border: 1px solid rgba(255,255,255,.1);
+      color: var(--ink);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+
+    .search-panel {
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--bg) 75%, transparent);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 74px;
+      z-index: 20;
+    }
+    .search-wrap {
+      padding: 18px 0 12px;
+    }
+    .searchbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      width: 100%;
+    }
+    .search-input {
+      flex: 1;
+      position: relative;
+    }
+    .search-input::before {
+      content: "⌕";
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      font-size: 1.5rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .search-input input {
+      width: 100%;
+      height: 54px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      color: var(--ink);
+      font-size: 1rem;
+      padding: 0 18px 0 52px;
+    }
+    .search-btn {
+      height: 54px;
+      padding: 0 20px;
+      border: 1px solid var(--gold);
+      border-radius: 16px;
+      background: linear-gradient(130deg, var(--gold), var(--gold2));
+      color: #1a160f;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 10px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .categories {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 0 10px;
+      scrollbar-width: none;
+    }
+    .categories::-webkit-scrollbar { display: none; }
+    .chip {
+      flex: none;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: .04em;
+      transition: .2s ease;
+    }
+    .chip.active {
+      background: var(--gold-soft);
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      gap: 12px;
+      padding: 6px 0 18px;
+    }
+    .filter {
+      display: grid;
+      gap: 6px;
+      min-width: 160px;
+    }
+    .filter span {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .filter input, .filter select {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      color: var(--ink);
+      min-height: 40px;
+      border-radius: 12px;
+      padding: 0 12px;
+    }
+    .clear-btn {
+      height: 40px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--gold);
+      border-radius: 12px;
+      padding: 0 14px;
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    main { padding: 28px 0 80px; }
+    .section {
+      margin-top: 36px;
+    }
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .section-kicker {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      font-size: 10px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      letter-spacing: -.05em;
+    }
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 560px;
+      font-size: .95rem;
+    }
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .mini-card-item {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--panel-soft);
+      transition: transform .2s ease, border-color .2s ease;
+    }
+    .mini-card-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(215,189,135,.8);
+    }
+    .mini-card-item img {
+      width: 100%;
+      aspect-ratio: 1.1;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05) contrast(1.02);
+    }
+    .mini-card-item .body {
+      padding: 14px 14px 16px;
+    }
+    .mini-card-item .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .mini-card-item h3 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.85rem;
+      line-height: 1.02;
+      letter-spacing: -.04em;
+      font-weight: 600;
+    }
+    .mini-card-item p {
+      color: var(--muted);
+      font-size: .78rem;
+      margin: 10px 0 14px;
+      min-height: 38px;
+    }
+    .mini-card-item .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 8px;
+    }
+    .price {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .link-btn {
+      border-radius: 999px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 7px 10px;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      background: transparent;
+    }
+
+    .category-block {
+      margin-top: 26px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel-soft);
+    }
+    .category-block h3 {
+      margin: 0 0 16px;
+      font-size: 1.7rem;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      letter-spacing: -.04em;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .product-card {
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(215,189,135,.8);
+    }
+    .product-card img {
+      width: 100%;
+      aspect-ratio: 1.05;
+      object-fit: cover;
+      display: block;
+    }
+    .product-card .inner {
+      padding: 14px 14px 16px;
+    }
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 8px;
+    }
+    .tag {
+      background: var(--gold-soft);
+      color: var(--gold);
+      border: 1px solid rgba(215,189,135,.25);
+      border-radius: 999px;
+      padding: 5px 8px;
+    }
+    .product-card h4 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.8rem;
+      letter-spacing: -.04em;
+      line-height: 1.02;
+      min-height: 38px;
+    }
+    .product-card p {
+      margin: 10px 0 14px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: .8rem;
+      min-height: 48px;
+    }
+    .product-card .bottom {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .product-card .bottom strong {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.6rem;
+    }
+    .store-link {
+      background: rgba(255,255,255,.02);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .load-more {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 22px auto 0;
+      width: min(100%, 320px);
+      height: 48px;
+      border-radius: 16px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      cursor: pointer;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 10px;
+      display: block;
+    }
+
+    .empty {
+      padding: 28px 18px;
+      border: 1px dashed var(--line);
+      border-radius: 18px;
+      color: var(--muted);
+      text-align: center;
+      background: rgba(255,255,255,.01);
+    }
+
+    footer {
+      margin-top: 60px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 980px) {
+      .hero-wrap { grid-template-columns: 1fr; }
+      .mini-grid, .catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .topbar-inner { min-height: 68px; }
+      .top-pill { display: none; }
+      .searchbar { flex-direction: column; }
+      .search-btn { width: 100%; }
+      .mini-grid, .catalog-grid { grid-template-columns: 1fr; }
+      .filters { display: grid; grid-template-columns: 1fr 1fr; }
+      .filter { min-width: 0; }
+      .clear-btn { width: 100%; }
+      .section-head { align-items: start; }
+    }
   </style>
 </head>
 <body>
-  <header class="shell masthead"><a class="brandmark" href="#top" aria-label="Найдётся — на главную"><span class="monogram">Н</span><span class="brandname">Найдётся</span></a><div class="top-actions"><span class="edition">Ваш личный гид по находкам</span><button class="theme-toggle" id="theme" type="button" aria-label="Переключить тему" title="Переключить тему">◐</button></div></header>
-  <main id="top" class="shell">
-    <section class="hero" aria-labelledby="hero-title"><svg class="hero-ornament" viewBox="0 0 300 300" fill="none" aria-hidden="true"><circle cx="150" cy="150" r="111" stroke="currentColor" opacity=".55"/><circle cx="150" cy="150" r="92" stroke="currentColor" opacity=".3"/><path d="M150 31v35m0 168v35M31 150h35m168 0h35M66 66l25 25m118 118 25 25m0-168-25 25M91 209l-25 25" stroke="currentColor" opacity=".5"/><path d="m150 84 19 47 47 19-47 19-19 47-19-47-47-19 47-19 19-47Z" stroke="currentColor"/><circle cx="150" cy="150" r="5" fill="currentColor"/></svg><div class="hero-copy"><span class="eyebrow">Покупки с хорошим вкусом</span><h1 id="hero-title">Меньше шума.<br><em>Больше находок.</em></h1><p>Продуманные идеи, магазины и ориентиры — чтобы найти именно то, что подходит вам.</p><div class="hero-note"><span>Независимые подборки</span><span>Без аккаунта и лишних данных</span></div></div></section>
-    <section class="search-section" aria-label="Поиск и фильтры"><form class="searchbar" id="search" role="search"><label class="searchbox"><span class="sr-only">Что ищем?</span><input id="query" type="search" placeholder="Например, пальто, кофемашина, подарок" autocomplete="off"></label><button class="gold-button" type="submit">Найти</button></form><nav class="categories" id="categories" aria-label="Категории товаров"></nav><div class="filters" aria-label="Фильтры каталога"><div class="filter"><label for="price-min">Цена от, ₽</label><input id="price-min" type="number" min="0" step="500" inputmode="numeric" placeholder="Любая"></div><div class="filter"><label for="price-max">Цена до, ₽</label><input id="price-max" type="number" min="0" step="500" inputmode="numeric" placeholder="Любая"></div><div class="filter"><label for="brand-filter">Бренд</label><select id="brand-filter"><option value="">Все бренды</option></select></div><button class="reset" id="reset-filters" type="button">Сбросить фильтры</button><span class="filter-note">Фильтры применяются к подборкам ниже</span></div></section>
-    <div id="results" class="main-content" aria-live="polite"></div>
-    <footer class="footer">«Найдётся» — независимый гид, не магазин. Карточки и бренды — редакционные примеры; цены являются примерными ориентирами, не предложениями продавцов и не обновляются в реальном времени. Наличие, бренд, цену, характеристики и условия доставки всегда уточняйте на сайте магазина. Поиск по магазинам открывается в новой вкладке.</footer>
-  </main>
-<script>
-(function(){
-  'use strict';
-  var CATEGORIES=[['all','Все'],['e','Электроника'],['f','Одежда'],['b','Красота'],['h','Дом'],['g','Продукты'],['c','Детям'],['k','Книги'],['s','Спорт'],['a','Авто'],['p','Аптека'],['u','Б/у']];
-  var CATEGORY_NAMES={};CATEGORIES.forEach(function(c){CATEGORY_NAMES[c[0]]=c[1]});
-  var RULES={e:/телефон|iphone|айфон|samsung|самсунг|xiaomi|ноутбук|наушник|телевизор|планшет|монитор|ssd|кофемашин|пылесос|камера|колонк/i,f:/пальто|кроссовк|куртк|джинс|платье|футболк|ботинк|сумк|рюкзак|обувь|шарф|свитер|худи|перчатк/i,b:/крем|шампун|духи|парфюм|помад|тушь|сыворотк|косметик|маск/i,h:/дрель|диван|стол|стул|кроват|шкаф|матрас|ламп|светильник|инструмент|плед|термокружк|посуда/i,g:/молоко|хлеб|сыр|мясо|кофе|чай|шоколад|овощ|фрукт|продукт/i,k:/книг|роман|учебник|манга|комикс/i,a:/шины|масло|аккумулятор|колодки|автомобил|запчаст/i,s:/гантел|велосипед|палатк|лыж|мяч|тренажер|самокат|коньки/i,c:/коляск|подгузник|игрушк|конструктор|лего|детск|пазл|автокресл/i,p:/таблетк|витамин|лекарств|мазь|сироп|аптеч/i,u:/б\/у|с рук|подержан|бывш/i};
-  // Редакционные идеи, не live-каталог. Стоимость — примерный ориентир, а не цена продавца.
-  var PRODUCTS=[
-    {name:'Шерстяное пальто',brand:'Zarina',cat:'f',price:12990,why:'Классический силуэт для холодного города.',season:true},
-    {name:'Зимние ботинки',brand:'Rieker',cat:'f',price:10990,why:'Сравните подошву, утеплитель и размерную сетку.',season:true},
-    {name:'Термобельё',brand:'ТВОЁ',cat:'f',price:2490,why:'Базовый слой для прогулок и поездок.',season:true},
-    {name:'Тёплый шарф',brand:'Finn Flare',cat:'f',price:3990,why:'Лаконичный аксессуар на каждый день.',season:true},
-    {name:'Перчатки',brand:'Befree',cat:'f',price:1790,why:'Небольшое сезонное обновление гардероба.',season:true},
-    {name:'Зимняя шапка',brand:'N.ТВОЁ',cat:'f',price:1990,why:'Тёплый аксессуар для прогулок.',season:true},
-    {name:'Пуховик городской',brand:'Baon',cat:'f',price:18990,why:'Сверьте температурный режим и состав.',season:true},
-    {name:'Непромокаемые варежки',brand:'Reima',cat:'f',price:2990,why:'Для зимних прогулок и активного отдыха.',season:true},
-    {name:'Домашние тапочки',brand:'De Fonseca',cat:'f',price:2490,why:'Уютная пара для дома.',season:true},
-    {name:'Увлажнитель воздуха',brand:'Xiaomi',cat:'e',price:6990,why:'Помогает поддерживать комфортный микроклимат.',season:true},
-    {name:'Беспроводные наушники',brand:'JBL',cat:'e',price:5990,why:'Для музыки, подкастов и дороги.'},
-    {name:'Портативная колонка',brand:'JBL',cat:'e',price:7990,why:'Компактный звук для дома и поездок.'},
-    {name:'Смарт-часы',brand:'Xiaomi',cat:'e',price:5490,why:'Уведомления и активность на запястье.'},
-    {name:'Зарядное устройство USB-C',brand:'Anker',cat:'e',price:2490,why:'Проверьте мощность и совместимость устройств.'},
-    {name:'Пауэрбанк',brand:'Baseus',cat:'e',price:2990,why:'Запас энергии в дороге.'},
-    {name:'Механическая клавиатура',brand:'Redragon',cat:'e',price:4990,why:'Для работы, учёбы и игр.'},
-    {name:'Беспроводная мышь',brand:'Logitech',cat:'e',price:2290,why:'Удобный аксессуар для рабочего стола.'},
-    {name:'Веб-камера',brand:'Logitech',cat:'e',price:4990,why:'Для видеозвонков и удалённой работы.'},
-    {name:'Электронная книга',brand:'PocketBook',cat:'e',price:14990,why:'Компактная библиотека для поездок.'},
-    {name:'Робот-пылесос',brand:'Xiaomi',cat:'e',price:17990,why:'Сравните навигацию и функции уборки.'},
-    {name:'Кроссовки на каждый день',brand:'Demix',cat:'f',price:4990,why:'Универсальная пара для городских маршрутов.'},
-    {name:'Базовая футболка',brand:'Uniqlo',cat:'f',price:1990,why:'Простой слой для повседневного гардероба.'},
-    {name:'Джинсы прямого кроя',brand:'Levi’s',cat:'f',price:8990,why:'Проверьте посадку и таблицу размеров.'},
-    {name:'Городской рюкзак',brand:'Herschel',cat:'f',price:7990,why:'Обратите внимание на объём и отделение для ноутбука.'},
-    {name:'Кожаный ремень',brand:'Cavaletto',cat:'f',price:3490,why:'Практичный аксессуар на каждый день.'},
-    {name:'Лёгкая ветровка',brand:'Finn Flare',cat:'f',price:6990,why:'Для прогулок в переменчивую погоду.'},
-    {name:'Платье миди',brand:'Zarina',cat:'f',price:5990,why:'Лаконичная модель для разных случаев.'},
-    {name:'Кошелёк',brand:'Askent',cat:'f',price:4990,why:'Компактный аксессуар из кожи.'},
-    {name:'Увлажняющий крем',brand:'Librederm',cat:'b',price:890,why:'Подбирайте средство под тип кожи.'},
-    {name:'Шампунь для ежедневного ухода',brand:'L’Oréal Paris',cat:'b',price:690,why:'Сверьте состав и рекомендации производителя.'},
-    {name:'Парфюмированный набор',brand:'Золотое яблоко',cat:'b',price:3990,why:'Идея небольшого подарка себе или близким.'},
-    {name:'Сыворотка для лица',brand:'The Ordinary',cat:'b',price:1790,why:'Перед применением изучите состав и инструкцию.'},
-    {name:'Бальзам для губ',brand:'СпивакЪ',cat:'b',price:390,why:'Компактное средство для ежедневного ухода.'},
-    {name:'Маска для волос',brand:'Estel',cat:'b',price:990,why:'Уходовое дополнение к привычному ритуалу.'},
-    {name:'Настольная лампа',brand:'Xiaomi',cat:'h',price:3490,why:'Мягкий свет для рабочего стола.'},
-    {name:'Термокружка',brand:'Arctic',cat:'h',price:2290,why:'Удобный спутник для долгих прогулок.',season:true},
-    {name:'Плед',brand:'уютный дом',cat:'h',price:2990,why:'Текстильный акцент для спокойных вечеров.',season:true},
-    {name:'Комплект постельного белья',brand:'Текстильная лавка',cat:'h',price:3990,why:'Выбирайте ткань и размер под свою кровать.'},
-    {name:'Керамическая ваза',brand:'4Home',cat:'h',price:1890,why:'Небольшой акцент для интерьера.'},
-    {name:'Органайзер для хранения',brand:'Idea',cat:'h',price:790,why:'Помогает навести порядок в шкафу и ящиках.'},
-    {name:'Набор кухонных ножей',brand:'Tefal',cat:'h',price:4990,why:'Сравните материал лезвий и комплект.'},
-    {name:'Кофемолка',brand:'Bosch',cat:'h',price:3990,why:'Для свежемолотого кофе дома.'},
-    {name:'Домашний набор инструментов',brand:'Зубр',cat:'h',price:4490,why:'Проверьте состав и назначение набора.'},
-    {name:'Кофе в зёрнах',brand:'Tasty Coffee',cat:'g',price:1490,why:'Попробуйте новый сорт или обжарку.'},
-    {name:'Подарочный чайный набор',brand:'Кантата',cat:'g',price:2190,why:'Универсальная идея для зимнего подарка.',season:true},
-    {name:'Оливковое масло',brand:'Monini',cat:'g',price:1290,why:'Сравните объём и тип масла.'},
-    {name:'Набор специй',brand:'Айдиго',cat:'g',price:790,why:'Несколько новых вкусов для домашних блюд.'},
-    {name:'Шоколад ручной работы',brand:'Победа',cat:'g',price:490,why:'Небольшое сладкое дополнение к подарку.'},
-    {name:'Термос',brand:'Arctic',cat:'g',price:2490,why:'Для горячих напитков в дороге.',season:true},
-    {name:'Многоразовая бутылка для воды',brand:'Tritan',cat:'g',price:990,why:'Лёгкая бутылка для повседневных поездок.'},
-    {name:'Книга для зимнего вечера',brand:'Эксмо',cat:'k',price:990,why:'Выберите жанр под настроение.',season:true},
-    {name:'Ежедневник в твёрдой обложке',brand:'Молескин',cat:'k',price:2490,why:'Для заметок, планов и идей.'},
-    {name:'Иллюстрированный атлас',brand:'АСТ',cat:'k',price:1590,why:'Подарочное издание для любознательных.'},
-    {name:'Набор закладок',brand:'Читай-город',cat:'k',price:390,why:'Маленький аксессуар для любителей книг.'},
-    {name:'Настольная игра для компании',brand:'Hobby World',cat:'k',price:2990,why:'Проверьте количество игроков и правила.'},
-    {name:'Фитнес-коврик',brand:'Demix',cat:'s',price:1990,why:'Для домашних тренировок и растяжки.'},
-    {name:'Эспандер набор',brand:'TORRES',cat:'s',price:990,why:'Компактный инвентарь для занятий дома.'},
-    {name:'Гантели разборные',brand:'Lite Weights',cat:'s',price:3990,why:'Подбирайте вес под уровень подготовки.'},
-    {name:'Скакалка скоростная',brand:'Reebok',cat:'s',price:1290,why:'Простой инвентарь для кардиотренировок.'},
-    {name:'Рюкзак туристический',brand:'Сплав',cat:'s',price:6990,why:'Проверьте объём, посадку и поясной ремень.'},
-    {name:'Набор для творчества',brand:'Детский мир',cat:'c',price:1290,why:'Подбирайте по возрасту и интересам.'},
-    {name:'Конструктор',brand:'LEGO',cat:'c',price:3990,why:'Сверьте рекомендуемый возраст и число деталей.'},
-    {name:'Настольная игра для детей',brand:'Bondibon',cat:'c',price:1490,why:'Идея для совместного семейного вечера.'},
-    {name:'Детский термос',brand:'Pilligrin',cat:'c',price:1290,why:'Проверьте объём и рекомендации по уходу.'},
-    {name:'Пазл на 500 деталей',brand:'Step Puzzle',cat:'c',price:690,why:'Спокойное занятие для выходного дня.'},
-    {name:'Автомобильный держатель',brand:'Baseus',cat:'a',price:1890,why:'Проверьте тип крепления и совместимость.'},
-    {name:'Компрессор автомобильный',brand:'Airline',cat:'a',price:3490,why:'Сравните производительность и питание.'},
-    {name:'Набор автомобилиста',brand:'Зубр',cat:'a',price:2990,why:'Сверьте комплектацию и требования региона.'},
-    {name:'Автомобильный видеорегистратор',brand:'70mai',cat:'a',price:6990,why:'Проверьте разрешение и способ установки.'},
-    {name:'Органайзер в багажник',brand:'Autoprofi',cat:'a',price:1290,why:'Помогает аккуратно хранить мелочи.'},
-    {name:'Органайзер для таблеток',brand:'Pillbox',cat:'p',price:490,why:'Это аксессуар, не медицинский товар.'},
-    {name:'Электронный термометр',brand:'B.Well',cat:'p',price:790,why:'Перед использованием прочитайте инструкцию.'},
-    {name:'Аптечный контейнер',brand:'Пластишка',cat:'p',price:590,why:'Храните лекарства согласно их упаковке.'},
-    {name:'Б/у велосипед',brand:'Stels',cat:'u',price:8500,why:'Для сезонной покупки — осмотрите товар лично.'},
-    {name:'Б/у объектив для камеры',brand:'Canon',cat:'u',price:12900,why:'Проверьте совместимость и состояние оптики.'},
-    {name:'Кресло офисное б/у',brand:'Метта',cat:'u',price:6900,why:'Осмотрите механизм и обивку перед покупкой.'}
-  ];
-  var SEASON_IDS=['Шерстяное пальто','Зимние ботинки','Термобельё','Тёплый шарф','Перчатки','Зимняя шапка','Пуховик городской','Непромокаемые варежки','Увлажнитель воздуха','Плед'];
-  PRODUCTS.forEach(function(p){p.season=SEASON_IDS.indexOf(p.name)>-1});
-  var STORES=[['Wildberries','https://www.wildberries.ru/catalog/0/search.aspx?search=','Универсальный маркетплейс','x9 f9 b8 h8 c8 s7 e5 k5 a4 g2'],['Ozon','https://www.ozon.ru/search/?text=','Товары разных категорий','x9 e8 f7 b7 h8 c8 s7 k8 a6 g4'],['Яндекс Маркет','https://market.yandex.ru/search?text=','Сравнение предложений','x9 e9 f5 b6 h8 c7 s6 k4 a5 g3'],['Авито','https://www.avito.ru/rossiya?q=','Новое и б/у','x8 u10 a9 e7 h7 s7 f5 c6 k4'],['Мегамаркет','https://megamarket.ru/catalog/?q=','Маркетплейс','x7 e8 f4 b5 h7 c6 s5 k3 a4 g5'],['AliExpress','https://aliexpress.ru/wholesale?SearchText=','Аксессуары и гаджеты','x6 e6 f5 h6 a6 c5 s4'],['DNS','https://www.dns-shop.ru/search/?q=','Компьютеры и техника','x3 e10 h3'],['М.Видео','https://www.mvideo.ru/product-list-page?q=','Техника и электроника','x3 e9 h6'],['Lamoda','https://www.lamoda.ru/catalogsearch/result/?q=','Одежда и аксессуары','x3 f10 s6 b4'],['Золотое яблоко','https://goldapple.ru/catalogsearch/result/?q=','Косметика и парфюмерия','x2 b10'],['Лэтуаль','https://www.letu.ru/s/search?q=','Косметика и парфюмерия','x2 b9'],['Лемана ПРО','https://leroymerlin.ru/search/?q=','Дом и ремонт','x3 h10 a3'],['Детский мир','https://www.detmir.ru/search/results?q=','Товары для детей','x2 c10'],['Читай-город','https://www.chitai-gorod.ru/search?phrase=','Книги и канцелярия','x2 k10'],['Спортмастер','https://www.sportmaster.ru/catalog/?q=','Спортивные товары','x2 s10 f5'],['Exist','https://exist.ru/Price/?pcode=','Автозапчасти','x2 a10'],['Apteka.ru','https://apteka.ru/search/?q=','Аптека','x1 p10']];
-  STORES.forEach(function(s){s.scores={};s[3].split(' ').forEach(function(v){s.scores[v[0]]=Number(v.slice(1))})});
-  var $=function(id){return document.getElementById(id)},input=$('query'),results=$('results'),categories=$('categories'),minInput=$('price-min'),maxInput=$('price-max'),brandSelect=$('brand-filter');
-  var selectedCategory='all',showEveryStore=false;
-  function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n}
-  function detected(q){for(var k in RULES)if(RULES[k].test(q))return k;return null}
-  function activeCategory(q){return selectedCategory==='all'?(detected(q)||'all'):selectedCategory}
-  function populateBrands(){var prior=brandSelect.value,brands=Array.from(new Set(PRODUCTS.map(function(p){return p.brand}))).sort(function(a,b){return a.localeCompare(b,'ru')});brandSelect.textContent='';var all=el('option','','Все бренды');all.value='';brandSelect.appendChild(all);brands.forEach(function(name){var option=el('option','',name);option.value=name;brandSelect.appendChild(option)});if(brands.indexOf(prior)>-1)brandSelect.value=prior}
-  function matchesSearch(p,q){if(!q)return true;var text=(p.name+' '+p.brand+' '+p.why+' '+(p.keywords||'')).toLocaleLowerCase('ru');return text.indexOf(q.toLocaleLowerCase('ru'))>-1}
-  function filteredProducts(cat,q,seasonOnly){var min=minInput.value===''?0:Number(minInput.value),max=maxInput.value===''?Infinity:Number(maxInput.value),brand=brandSelect.value;return PRODUCTS.filter(function(p){return(cat==='all'||p.cat===cat)&&(!seasonOnly||p.season)&&p.price>=min&&p.price<=max&&(!brand||brand===p.brand)&&matchesSearch(p,q)})}
-  function searchHref(base,q){return base+encodeURIComponent(q)}
-  function productCard(product,index,season){var card=el('article','product-card');card.setAttribute('data-index',String(index+1).padStart(2,'0'));var meta=el('div','product-meta');meta.appendChild(el('span','',product.brand));meta.appendChild(el('span','season-badge',season?'СЕЗОННЫЙ ВЫБОР':CATEGORY_NAMES[product.cat]));card.appendChild(meta);card.appendChild(el('h3','',product.name));card.appendChild(el('p','',product.why));var bottom=el('div','product-bottom'),price=el('div','estimate','≈ '+product.price.toLocaleString('ru-RU')+' ₽');price.appendChild(el('small','','примерный ориентир'));bottom.appendChild(price);var link=el('a','card-link','Смотреть магазины');link.href=searchHref('https://www.ozon.ru/search/?text=',product.name);link.target='_blank';link.rel='noopener noreferrer';bottom.appendChild(link);card.appendChild(bottom);return card}
-  function renderGrid(container,list,season){container.textContent='';if(!list.length){container.appendChild(el('div','empty','По этим фильтрам ничего не нашлось. Попробуйте изменить цену, категорию или бренд.'));return}list.forEach(function(p,i){container.appendChild(productCard(p,i,season))})}
-  function storeCard(store,q){var a=el('a','store'),initial=el('span','store-initial',store[0].slice(0,1));initial.setAttribute('aria-hidden','true');a.appendChild(initial);var info=el('span','store-info');info.appendChild(el('b','',store[0]));info.appendChild(el('span','',store[2]));a.appendChild(info);a.appendChild(el('span','store-arrow','↗'));a.href=searchHref(store[1],q);a.target='_blank';a.rel='noopener noreferrer';return a}
-  function sectionHeader(kicker,title,description,count){var header=el('div','section-head'),left=el('div','');left.appendChild(el('span','section-kicker',kicker));left.appendChild(el('h2','',title));header.appendChild(left);if(description)header.appendChild(el('p','',description));if(count!==undefined)header.appendChild(el('span','count',count+' находок'));return header}
-  function renderCategories(active){categories.textContent='';CATEGORIES.forEach(function(c){var b=el('button','chip',c[1]);b.type='button';b.setAttribute('aria-pressed',String(c[0]===active));b.addEventListener('click',function(){selectedCategory=c[0];showEveryStore=false;render();if(c[0]!=='all')results.scrollIntoView({behavior:'smooth',block:'start'})});categories.appendChild(b)})}
-  function render(){var q=input.value.trim(),cat=activeCategory(q);renderCategories(cat);results.textContent='';var exact=filteredProducts(cat,q,false);var collection=exact.length||!q?exact:filteredProducts(cat,'',false);var season=filteredProducts('all','',true).slice(0,10);
-    var intro=el('div','');var title=q?'Подходящие идеи':cat==='all'?'Топ-10 товаров сезона':'Идеи: '+CATEGORY_NAMES[cat];var desc=q?(exact.length?'Идеи по запросу с фильтрами по примерной цене и бренду.':'Точных совпадений нет — показываем идеи из выбранной категории.'):'Выберите категорию — покажем подходящие идеи из локального каталога.';intro.appendChild(sectionHeader(q?'ВАШ ЗАПРОС':cat==='all'?'ЛИЧНАЯ ПОДБОРКА':'ВЫБРАННЫЙ РАЗДЕЛ',title,desc,collection.length));var status=el('div','results-top');if(q){var strong=el('strong','', '«'+q+'»');status.appendChild(document.createTextNode('Ищем: '));status.appendChild(strong);status.appendChild(document.createTextNode(' · '+collection.length+' идей'))}else if(cat==='all')status.textContent='Зимняя подборка · 10 редакционных идей · фильтруйте по цене и бренду';else status.textContent='Раздел «'+CATEGORY_NAMES[cat]+'» · '+collection.length+' идей · фильтры применяются автоматически';intro.appendChild(status);results.appendChild(intro);
-    var grid=el('div','product-grid');renderGrid(grid,q||cat!=='all'?collection:season,true);results.appendChild(grid);
-    var seasonSection=el('section','seasonal');seasonSection.appendChild(sectionHeader('ВЫБОР РЕДАКЦИИ','Топ-10 товаров сезона','Зимняя подборка локальная: цены примерные, наличие не проверяется.',season.length));var seasonIntro=el('div','seasonal-intro');var text=el('div','');text.appendChild(el('b','','Зима — повод выбрать с умом'));text.appendChild(el('p','','Практичные вещи для тепла, уюта и небольших радостей.'));seasonIntro.appendChild(text);seasonIntro.appendChild(el('span','season-badge','ЗИМА · 2026'));seasonSection.appendChild(seasonIntro);var seasonGrid=el('div','product-grid seasonal-grid');renderGrid(seasonGrid,season,true);seasonSection.appendChild(seasonGrid);results.appendChild(seasonSection);
-    if(q){var storeSection=el('section','search-results');storeSection.appendChild(sectionHeader('ПРОДОЛЖИТЬ ПОИСК','Магазины','Открываем результаты поиска у продавцов; цены и наличие проверяйте на их сайтах.'));var key=cat==='all'?'x':cat,ranked=STORES.filter(function(s){return s.scores[key]>0}).sort(function(a,b){return b.scores[key]-a.scores[key]}),first=ranked.slice(0,3),rest=ranked.slice(3),storeList=el('div','store-list');first.forEach(function(s){storeList.appendChild(storeCard(s,q))});if(showEveryStore)rest.forEach(function(s){storeList.appendChild(storeCard(s,q))});storeSection.appendChild(storeList);if(rest.length&&!showEveryStore){var more=el('button','reset','Показать ещё магазины');more.type='button';more.style.marginTop='12px';more.addEventListener('click',function(){showEveryStore=true;render()});storeSection.appendChild(more)}results.appendChild(storeSection)}
-    if(!q&&cat==='all'){var inspiration=el('section','inspiration'),inner=el('div','inspiration-inner'),copy=el('div','');copy.appendChild(el('h2','','Находка дня'));copy.appendChild(el('p','','Случайная идея из каталога — без ИИ и внешних сервисов.'));inner.appendChild(copy);var button=el('button','random-button','Найти вдохновение');button.type='button';button.addEventListener('click',function(){var list=filteredProducts('all','',false);if(!list.length){input.focus();return}var choice=list[Math.floor(Math.random()*list.length)];input.value=choice.name;selectedCategory='all';render();results.scrollIntoView({behavior:'smooth',block:'start'})});inner.appendChild(button);inspiration.appendChild(inner);results.appendChild(inspiration)}
-  }
-  $('search').addEventListener('submit',function(e){e.preventDefault();selectedCategory='all';showEveryStore=false;render();results.scrollIntoView({behavior:'smooth',block:'start'})});
-  [minInput,maxInput,brandSelect].forEach(function(control){control.addEventListener('input',render);control.addEventListener('change',render)});
-  $('reset-filters').addEventListener('click',function(){minInput.value='';maxInput.value='';brandSelect.value='';selectedCategory='all';render()});
-  $('theme').addEventListener('click',function(){var next=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',next);try{localStorage.setItem('naidetsya-theme',next)}catch(e){}});
-  try{var saved=localStorage.getItem('naidetsya-theme');if(saved==='light'||saved==='dark')document.documentElement.setAttribute('data-theme',saved)}catch(e){}
-  populateBrands();render();
-})();
-</script>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand" aria-label="Найдётся — подборки товаров">
+        <span class="brand-mark">Н</span>
+        <div>Найдётся <small>подборки</small></div>
+      </div>
+      <div class="top-controls">
+        <span class="top-pill">всё для выбора</span>
+        <button class="theme-btn" type="button" id="themeToggle" aria-label="Переключить тему">◐</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="shell hero-wrap">
+      <div>
+        <span class="eyebrow">Покупки с хорошим вкусом</span>
+        <h1>Меньше шума.<br><strong>Больше находок.</strong></h1>
+        <p class="subhead">Выбирайте удобную подборку, листайте идеи и открывайте конкретные магазины. Здесь не только поиск, а целый каталог товаров, который хочется листать.</p>
+        <div class="hero-stats" aria-label="Статистика каталога">
+          <div><strong>200+</strong> товаров</div>
+          <div><strong>11</strong> категорий</div>
+          <div><strong>3</strong> подборки</div>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-label="Превью подборок товаров">
+        <div class="art-grid">
+          <div class="mini-card large">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=80" alt="Подарок для дома">
+            <span class="mini-tag">Подарки</span>
+          </div>
+          <div class="mini-card">
+            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80" alt="Покупки для дома">
+          </div>
+          <div class="mini-card">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" alt="Рабочий стол и техника">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="search-panel">
+    <div class="shell search-wrap">
+      <form id="searchForm" class="searchbar" role="search">
+        <label class="search-input" aria-label="Поиск товара">
+          <input id="searchInput" type="search" placeholder="Например: сумка, кофемашина, подарок, ботинки" autocomplete="off">
+        </label>
+        <button class="search-btn" type="submit">Найти</button>
+      </form>
+
+      <nav id="categoryTabs" class="categories" aria-label="Категории товаров"></nav>
+
+      <div class="filters" aria-label="Фильтры товаров">
+        <label class="filter">
+          <span>Цена от</span>
+          <input id="minPrice" type="number" min="0" step="500" placeholder="Любая">
+        </label>
+        <label class="filter">
+          <span>Цена до</span>
+          <input id="maxPrice" type="number" min="0" step="500" placeholder="Любая">
+        </label>
+        <label class="filter">
+          <span>Бренд</span>
+          <select id="brandFilter">
+            <option value="">Все бренды</option>
+          </select>
+        </label>
+        <button id="clearFilters" class="clear-btn" type="button">Сбросить</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="shell" id="catalogRoot"></main>
+
+  <footer class="shell">
+    «Найдётся» — независимый каталог идей с примерами товаров. Фотографии и цены — ориентировочные, а не предложения продавцов. Открытие результатов ведёт в магазины в новой вкладке, и конечную цену, наличие и условия доставки стоит уточнять на сайте конкретного магазина.
+  </footer>
+
+  <script>
+    (function () {
+      const CATEGORY_META = [
+        ['all', 'Все'],
+        ['e', 'Электроника'],
+        ['f', 'Одежда'],
+        ['b', 'Красота'],
+        ['h', 'Дом'],
+        ['g', 'Продукты'],
+        ['k', 'Книги'],
+        ['s', 'Спорт'],
+        ['c', 'Детям'],
+        ['a', 'Авто'],
+        ['p', 'Аптека'],
+        ['u', 'Б/у']
+      ];
+
+      const PRODUCT_BANK = {
+        e: [
+          { name: 'Беспроводные наушники', brand: 'Sony', price: 29990, image: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80', blurb: 'Для прогулок, работы и музыки.', tag: 'Популярно' },
+          { name: 'Портативная колонка', brand: 'JBL', price: 8990, image: 'https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=900&q=80', blurb: 'Компактный звук для дома и поездок.', tag: 'Лайк' },
+          { name: 'Смарт-часы', brand: 'Xiaomi', price: 6990, image: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=900&q=80', blurb: 'Следят за шагами и уведомлениями.', tag: 'Деньги' },
+          { name: 'Умная лампа', brand: 'Philips', price: 5490, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Тёплый свет для вечеров и работы.', tag: 'Дом' },
+          { name: 'Пауэрбанк', brand: 'Baseus', price: 3690, image: 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=900&q=80', blurb: 'С запасом энергии в дороге.', tag: 'Путешествия' },
+          { name: 'Беспроводная мышь', brand: 'Logitech', price: 2790, image: 'https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=900&q=80', blurb: 'Удобно для дома и офиса.', tag: 'Работа' },
+          { name: 'Веб-камера', brand: 'Logitech', price: 4990, image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=900&q=80', blurb: 'Для звонков и стриминга.', tag: 'Видео' },
+          { name: 'Электронная книга', brand: 'PocketBook', price: 18990, image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80', blurb: 'Читать без лишнего шума.', tag: 'Чтение' },
+          { name: 'Робот-пылесос', brand: 'Xiaomi', price: 25490, image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80', blurb: 'Автоматическая уборка дома.', tag: 'Быт' },
+          { name: 'Кофемашина', brand: 'DeLonghi', price: 21990, image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80', blurb: 'Кофе дома без лишнего усилия.', tag: 'Утро' },
+          { name: 'Механическая клавиатура', brand: 'Redragon', price: 6990, image: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=900&q=80', blurb: 'Для игр и долгой работы.', tag: 'Игры' },
+          { name: 'Планшет', brand: 'Samsung', price: 28990, image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80', blurb: 'Удобный для чтения и задач.', tag: 'Портативно' },
+          { name: 'Принтер', brand: 'Canon', price: 11990, image: 'https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?auto=format&fit=crop&w=900&q=80', blurb: 'Для документов и домашнего офиса.', tag: 'Офис' },
+          { name: 'Наушники с шумоподавлением', brand: 'Sony', price: 17990, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80', blurb: 'Снять шум и сосредоточиться.', tag: 'Удобно' },
+          { name: 'Термос', brand: 'Arctic', price: 2490, image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80', blurb: 'Для тёплых напитков на ходу.', tag: 'Горячо' },
+          { name: 'Игровой монитор', brand: 'AOC', price: 21990, image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=900&q=80', blurb: 'Для плавной картинки и игр.', tag: 'Игры' },
+          { name: 'Фотоаппарат', brand: 'Canon', price: 44990, image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=80', blurb: 'Сохраняет воспоминания лучше.', tag: 'Память' },
+          { name: 'Беспроводной зарядник', brand: 'Anker', price: 2390, image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=900&q=80', blurb: 'Просто кладём и заряжаем.', tag: 'Удобно' },
+          { name: '3D-сканер', brand: 'Creality', price: 32990, image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80', blurb: 'Для техники, творчества и prototyping.', tag: 'Пауза' }
+        ],
+        f: [
+          { name: 'Пуховик городской', brand: 'Zalando', price: 18990, image: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80', blurb: 'Тёпло и без лишнего объёма.', tag: 'Сезон' },
+          { name: 'Кроссовки на каждый день', brand: 'Nike', price: 8990, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80', blurb: 'Современный классический вариант.', tag: 'Удобно' },
+          { name: 'Джинсы прямого кроя', brand: 'Levi’s', price: 7990, image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80', blurb: 'Базовый слой для повседневных образов.', tag: 'Базовый' },
+          { name: 'Платье миди', brand: 'Zara', price: 6990, image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80', blurb: 'Вечером, в городе и на встречах.', tag: 'Лёгкий' },
+          { name: 'Сумка через плечо', brand: 'Herschel', price: 6990, image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80', blurb: 'Лёгкая и стильная.', tag: 'Акцент' },
+          { name: 'Шерстяное пальто', brand: 'Mango', price: 12990, image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80', blurb: 'Надёжно в холод и не скучно.', tag: 'Зима' },
+          { name: 'Ветровка', brand: 'Reebok', price: 5990, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80', blurb: 'Для дождя и переменчивой погоды.', tag: 'Уличная' },
+          { name: 'Кожаный ремень', brand: 'Cavaletto', price: 3490, image: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=80', blurb: 'Деталь, которая освежает образ.', tag: 'Аксессуар' },
+          { name: 'Городской рюкзак', brand: 'The North Face', price: 8990, image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80', blurb: 'Удобно для учебы и прогулок.', tag: 'Ежедневно' },
+          { name: 'Футболка базовая', brand: 'Uniqlo', price: 1990, image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80', blurb: 'Лучшая база для капсулы.', tag: 'База' },
+          { name: 'Шапка из шерсти', brand: 'H&M', price: 1790, image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80', blurb: 'Тёплая и аккуратная.', tag: 'Зима' },
+          { name: 'Куртка-авиатор', brand: 'ASOS', price: 10990, image: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80', blurb: 'Сделает образ более выразительным.', tag: 'Стиль' },
+          { name: 'Тёплые варежки', brand: 'Reima', price: 2490, image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80', blurb: 'Уютно и функционально.', tag: 'Уют' },
+          { name: 'Свитер', brand: 'Massimo Dutti', price: 5990, image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80', blurb: 'Лёгкое обновление гардероба.', tag: 'Нейтрально' },
+          { name: 'Кеды с белой подошвой', brand: 'Adidas', price: 6990, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80', blurb: 'Подходят почти под любой образ.', tag: 'Лето' },
+          { name: 'Пальто в стиле oversize', brand: 'Mango', price: 14990, image: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80', blurb: 'Тёплое и собранное.', tag: 'Классика' },
+          { name: 'Шарф из кашемира', brand: 'Depict', price: 4290, image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80', blurb: 'Мягкий и аккуратный.', tag: 'Подарок' },
+          { name: 'Кожаная обувь', brand: 'Rieker', price: 8190, image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=80', blurb: 'Классический слой для офиса.', tag: 'Одежда' },
+          { name: 'Пиджак', brand: 'Mango', price: 10990, image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80', blurb: 'Модный базовый элемент.', tag: 'Уличный' }
+        ],
+        b: [
+          { name: 'Увлажняющий крем', brand: 'Librederm', price: 890, image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=900&q=80', blurb: 'Подходит для ежедневного ухода.', tag: 'Кожа' },
+          { name: 'Шампунь', brand: 'L’Oréal', price: 690, image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80', blurb: 'Базовый уход для волос.', tag: 'Уход' },
+          { name: 'Сыворотка', brand: 'The Ordinary', price: 1990, image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80', blurb: 'Для поддержания барьера кожи.', tag: 'Тон' },
+          { name: 'Помада', brand: 'Maybelline', price: 780, image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80', blurb: 'Нежный оттенок на каждый день.', tag: 'Губы' },
+          { name: 'Тушь', brand: 'Lime Crime', price: 1350, image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80', blurb: 'Подчеркнуть взгляд аккуратно.', tag: 'Глаза' },
+          { name: 'Маска для лица', brand: 'Beauty Formulas', price: 480, image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80', blurb: 'Для лёгкого ухода вечером.', tag: 'Питание' },
+          { name: 'Парфюм', brand: 'Zara', price: 3990, image: 'https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?auto=format&fit=crop&w=900&q=80', blurb: 'Лёгкий вечерний аромат.', tag: 'Аромат' },
+          { name: 'Крем для рук', brand: 'Nivea', price: 420, image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80', blurb: 'Гладкие руки без липкости.', tag: 'Руки' },
+          { name: 'Дезодорант', brand: 'Nivea', price: 390, image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=900&q=80', blurb: 'Комфорт на весь день.', tag: 'Ежедневно' },
+          { name: 'Уходовая сыворотка', brand: 'Bioderma', price: 1990, image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80', blurb: 'Для поддержания гладкости.', tag: 'Уход' },
+          { name: 'Маска для волос', brand: 'Estel', price: 560, image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80', blurb: 'Мягкость и блеск без перегруза.', tag: 'Волосы' },
+          { name: 'Набор косметики', brand: 'Beauty', price: 2990, image: 'https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?auto=format&fit=crop&w=900&q=80', blurb: 'Хороший подарок и базовый набор.', tag: 'Подарок' },
+          { name: 'Пилинг', brand: 'The Body Shop', price: 1190, image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=900&q=80', blurb: 'Для мягкого обновления кожи.', tag: 'Очищение' },
+          { name: 'Тональный крем', brand: 'L’Oréal', price: 1490, image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80', blurb: 'Лёгкое покрытие для дня.', tag: 'Макияж' },
+          { name: 'Бальзам для губ', brand: 'Nivea', price: 350, image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80', blurb: 'Комфорт и мягкость.', tag: 'Уход' },
+          { name: 'Набор для ванны', brand: 'The Body Shop', price: 2490, image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=900&q=80', blurb: 'Ритуал расслабления домой.', tag: 'Расслабление' },
+          { name: 'Лосьон после бритья', brand: 'Nivea', price: 590, image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80', blurb: 'Успокаивает и освежает.', tag: 'Мужчины' },
+          { name: 'Тонер', brand: 'Bioderma', price: 990, image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80', blurb: 'Лёгкий уход после очищения.', tag: 'Уход' },
+          { name: 'Духи', brand: 'Dior', price: 5990, image: 'https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?auto=format&fit=crop&w=900&q=80', blurb: 'Премиальная ароматная история.', tag: 'Подарок' }
+        ],
+        h: [
+          { name: 'Плед', brand: 'IKEA', price: 2590, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Уют для дома и холодных вечеров.', tag: 'Уют' },
+          { name: 'Настольная лампа', brand: 'Xiaomi', price: 3490, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Для чтения и вечернего света.', tag: 'Свет' },
+          { name: 'Кофемолка', brand: 'Bosch', price: 4490, image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80', blurb: 'Свежее зерно дома.', tag: 'Кофе' },
+          { name: 'Термокружка', brand: 'Arctic', price: 2290, image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80', blurb: 'На работу, в поездку и в дорогу.', tag: 'Пойдем' },
+          { name: 'Комплект постельного', brand: 'Mila', price: 3990, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Почти спальня в стиле спокойствия.', tag: 'Спальня' },
+          { name: 'Органайзер для стола', brand: 'Idea', price: 1490, image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80', blurb: 'Хранение для мелочей и кофе.', tag: 'Порядок' },
+          { name: 'Набор кухонных ножей', brand: 'Tefal', price: 4990, image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=900&q=80', blurb: 'Для дома и готовки чуть чаще.', tag: 'Кухня' },
+          { name: 'Светильник настенный', brand: 'Mitsubishi', price: 5890, image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80', blurb: 'Свет и уют в комнате.', tag: 'Дом' },
+          { name: 'Подушка для сна', brand: 'Mila', price: 1890, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Расслабление и больше сна.', tag: 'Сон' },
+          { name: 'Ваза', brand: '4Home', price: 1790, image: 'https://images.unsplash.com/photo-1517705008128-361805f42e86?auto=format&fit=crop&w=900&q=80', blurb: 'Небольшой декор для столешницы.', tag: 'Декор' },
+          { name: 'Пылесос', brand: 'Xiaomi', price: 13990, image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80', blurb: 'Меньше хаоса, больше порядка.', tag: 'Уборка' },
+          { name: 'Термос для длительных поездок', brand: 'Thermos', price: 2990, image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80', blurb: 'Поддержка тепла в дороге.', tag: 'Путешествия' },
+          { name: 'Текстиль для кухни', brand: 'Mila', price: 2490, image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80', blurb: 'Небольшой светлый интерьер.', tag: 'Кухня' },
+          { name: 'Одеяло', brand: 'Mila', price: 4890, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Космос для отдыха после работы.', tag: 'Спальня' },
+          { name: 'Коврик для ванной', brand: 'Mila', price: 990, image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80', blurb: 'Мягко и практично.', tag: 'Ванна' },
+          { name: 'Панель для хранения', brand: 'IKEA', price: 3290, image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80', blurb: 'Порядок в мелочах.', tag: 'Порядок' },
+          { name: 'Керамическая кружка', brand: 'Arctic', price: 990, image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80', blurb: 'Для кофе и чая по утрам.', tag: 'Утро' },
+          { name: 'Коврик под компьютер', brand: 'Mila', price: 1490, image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80', blurb: 'Для офисной зоны и звукоизоляции.', tag: 'Работа' },
+          { name: 'Подставка для ноутбука', brand: 'Baseus', price: 1990, image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80', blurb: 'Удобно для спины и работы.', tag: 'Офис' }
+        ],
+        g: [
+          { name: 'Кофе в зернах', brand: 'Tasty Coffee', price: 1490, image: 'https://images.unsplash.com/photo-1498804103079-a4f7d7c3b4d1?auto=format&fit=crop&w=900&q=80', blurb: 'Свежая обжарка для дома.', tag: 'Кофе' },
+          { name: 'Чайный набор', brand: 'Кантата', price: 2190, image: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=900&q=80', blurb: 'Тёплый подарок в холодное время.', tag: 'Подарок' },
+          { name: 'Оливковое масло', brand: 'Monini', price: 1290, image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=900&q=80', blurb: 'Для салатов и готовки.', tag: 'Кухня' },
+          { name: 'Шоколад', brand: 'Merci', price: 590, image: 'https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=900&q=80', blurb: 'Маленькая радость на каждый день.', tag: 'Сладко' },
+          { name: 'Орехи и сухофрукты', brand: 'Сибирь', price: 990, image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80', blurb: 'Топ для перекуса и энергии.', tag: 'Полезно' },
+          { name: 'Термос', brand: 'Arctic', price: 2490, image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80', blurb: 'Поддержит напиток горячим.', tag: 'Путешествия' },
+          { name: 'Сок на каждый день', brand: 'Добрый', price: 690, image: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80', blurb: 'Просто и полезно.', tag: 'Напиток' },
+          { name: 'Фрукты на неделю', brand: 'Еда', price: 1190, image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=900&q=80', blurb: 'Небольшой запас для дома.', tag: 'Свежо' },
+          { name: 'Крупы и каши', brand: 'Здорово', price: 790, image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80', blurb: 'Для спокойных breakfasts.', tag: 'Завтрак' },
+          { name: 'Система для завтрака', brand: 'Хлеб и сдобный', price: 1990, image: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=900&q=80', blurb: 'Набор базовых продуктов.', tag: 'Дом' },
+          { name: 'Набор специй', brand: 'Райский', price: 990, image: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80', blurb: 'Чтобы готовить с интересом.', tag: 'Готовка' },
+          { name: 'Вода без пластика', brand: 'Aqua', price: 690, image: 'https://images.unsplash.com/photo-1553531384-411a247ccd73?auto=format&fit=crop&w=900&q=80', blurb: 'Надёжная бутылка в сумке.', tag: 'Простота' },
+          { name: 'Сыр и закуски', brand: 'Ферма', price: 1690, image: 'https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=80', blurb: 'Для вечера в компании.', tag: 'Закуски' },
+          { name: 'Кексы и выпечка', brand: 'Пекарня', price: 890, image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80', blurb: 'Немного домашнего уюта.', tag: 'Выпечка' },
+          { name: 'Смузи-набор', brand: 'Green', price: 1490, image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=80', blurb: 'Легко и быстро утром.', tag: 'Здоровье' },
+          { name: 'Десертная коробка', brand: 'Карамель', price: 1990, image: 'https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=900&q=80', blurb: 'Подарок в небольшом формате.', tag: 'Подарок' },
+          { name: 'Зеленые овощи', brand: 'Ферма', price: 990, image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80', blurb: 'Фреш-наполнение дня.', tag: 'Свежо' },
+          { name: 'Ягодный микс', brand: 'Ферма', price: 850, image: 'https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=900&q=80', blurb: 'Лёгкий и полезный источник энергии.', tag: 'Фрукты' },
+          { name: 'Набор для завтрака', brand: 'Домашний', price: 1890, image: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=900&q=80', blurb: 'Свежая и быстрая подготовка.', tag: 'Завтрак' }
+        ],
+        k: [
+          { name: 'Книга на выходные', brand: 'Эксмо', price: 990, image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80', blurb: 'Что хочется читать с чашкой чая.', tag: 'Приятно' },
+          { name: 'Ежедневник', brand: 'Moleskine', price: 2490, image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=900&q=80', blurb: 'Для планов и заметок.', tag: 'Планы' },
+          { name: 'Атлас или путеводитель', brand: 'АСТ', price: 1590, image: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?auto=format&fit=crop&w=900&q=80', blurb: 'Чтение и вдохновение.', tag: 'Путешествия' },
+          { name: 'Книга-история', brand: 'Питер', price: 1490, image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80', blurb: 'Небольшое погружение в тему.', tag: 'Развитие' },
+          { name: 'Комикс', brand: 'Bubble', price: 890, image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80', blurb: 'Не только для детей.', tag: 'Культура' },
+          { name: 'Набор закладок', brand: 'Читай', price: 390, image: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?auto=format&fit=crop&w=900&q=80', blurb: 'Всё для красивого чтения.', tag: 'Поддержка' },
+          { name: 'Детская книга', brand: 'Лабиринт', price: 690, image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80', blurb: 'Хороший подарок детям.', tag: 'Детям' },
+          { name: 'Книга про дизайн', brand: 'Питер', price: 1990, image: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?auto=format&fit=crop&w=900&q=80', blurb: 'Полезно и интересно.', tag: 'Профессия' },
+          { name: 'Настольная игра', brand: 'Hobby World', price: 2490, image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80', blurb: 'Для компании и семейного вечера.', tag: 'Вечер' },
+          { name: 'Книга про путешествия', brand: 'АСТ', price: 1490, image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80', blurb: 'Планируйте поездки ещё до них.', tag: 'Путешествия' },
+          { name: 'Подарочный набор книг', brand: 'Эксмо', price: 3900, image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80', blurb: 'Много книг на один подарок.', tag: 'Подарок' },
+          { name: 'Блокнот с твёрдой обложкой', brand: 'Moleskine', price: 1990, image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=900&q=80', blurb: 'Для заметок и планирования.', tag: 'Офис' },
+          { name: 'Роман', brand: 'Эксмо', price: 990, image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80', blurb: 'Для тихого вечера дома.', tag: 'Роман' },
+          { name: 'Книга по психологи', brand: 'Мир книги', price: 1590, image: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?auto=format&fit=crop&w=900&q=80', blurb: 'Узнать немного больше о себе.', tag: 'Развитие' },
+          { name: 'Сборник коротких рассказов', brand: 'Витязь', price: 890, image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80', blurb: 'На пару вечеров.', tag: 'Будни' },
+          { name: 'Педагогическая книга', brand: 'Питер', price: 1790, image: 'https://images.unsplash.com/photo-1524578271613-d550eacf6090?auto=format&fit=crop&w=900&q=80', blurb: 'Полезна для работы и жизни.', tag: 'Профессия' },
+          { name: 'Календарь', brand: 'Moleskine', price: 990, image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=900&q=80', blurb: 'Всё видно и удобно.', tag: 'Планы' },
+          { name: 'Магнитный планер', brand: 'Мероприятие', price: 1190, image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=900&q=80', blurb: 'Для стильного планирования.', tag: 'Организация' },
+          { name: 'Мини-книга для поездок', brand: 'Эксмо', price: 650, image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80', blurb: 'Для скучных перерывов в дороге.', tag: 'Путешествия' }
+        ],
+        s: [
+          { name: 'Фитнес-коврик', brand: 'Demix', price: 1990, image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80', blurb: 'Для дома и комфортных занятий.', tag: 'Тренировки' },
+          { name: 'Гантели', brand: 'Lite', price: 3990, image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80', blurb: 'Небольшой набор для дома.', tag: 'Сила' },
+          { name: 'Скакалка', brand: 'Reebok', price: 1190, image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80', blurb: 'Лёгкая активность в любое время.', tag: 'Кардио' },
+          { name: 'Рюкзак туристический', brand: 'Сплав', price: 6990, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80', blurb: 'Для прогулок и поездок.', tag: 'Путешествия' },
+          { name: 'Велосипед', brand: 'Stels', price: 28990, image: 'https://images.unsplash.com/photo-1558980664-10e7170b5df9?auto=format&fit=crop&w=900&q=80', blurb: 'Для города и прогулочного ритма.', tag: 'Транспорт' },
+          { name: 'Лыжи', brand: 'Rossignol', price: 24990, image: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=900&q=80', blurb: 'Падает всё лучше на снегу.', tag: 'Зима' },
+          { name: 'Беговые кроссовки', brand: 'Nike', price: 8990, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80', blurb: 'Для пробежек и прогулок.', tag: 'Бег' },
+          { name: 'Эспандер', brand: 'TORRES', price: 990, image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80', blurb: 'Компактный минимум упражнений.', tag: 'Улучшение' },
+          { name: 'Тренажёр для дома', brand: 'Sport Elite', price: 12990, image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80', blurb: 'Для регулярной домашней активности.', tag: 'Силовые' },
+          { name: 'Жилет для тренировок', brand: 'Nike', price: 4990, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80', blurb: 'Как база для активного дня.', tag: 'Формы' },
+          { name: 'Мяч для фитнеса', brand: 'Adidas', price: 1990, image: 'https://images.unsplash.com/photo-1541534401786-2077eed87a74?auto=format&fit=crop&w=900&q=80', blurb: 'Комфортная работа с телом.', tag: 'Физика' },
+          { name: 'Палатка', brand: 'Naturehike', price: 8990, image: 'https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=900&q=80', blurb: 'Для выходных и походов.', tag: 'На природе' },
+          { name: 'Комплект тренажёров', brand: 'Sport Elite', price: 17990, image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80', blurb: 'Больше движения без суеты.', tag: 'Дом' },
+          { name: 'Ботинки для трекинга', brand: 'Salamander', price: 12990, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80', blurb: 'Для скорости и уверенности.', tag: 'Маршрут' },
+          { name: 'Зажим для занятий', brand: 'Sport Elite', price: 990, image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80', blurb: 'Лёгкие занятия без подготовки.', tag: 'Дом' },
+          { name: 'Горнолыжная форма', brand: 'Columbia', price: 15990, image: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=900&q=80', blurb: 'Тепло и свобода движения.', tag: 'Зима' },
+          { name: 'Коврик для йоги', brand: 'Demix', price: 1490, image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80', blurb: 'Для спокойных занятий дома.', tag: 'Йога' },
+          { name: 'Спортивные перчатки', brand: 'Reebok', price: 2990, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80', blurb: 'Удобство и поддержка.', tag: 'Силовые' },
+          { name: 'Планшет для дайвинга', brand: 'Garmin', price: 21990, image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80', blurb: 'Для тренировок и контроля.', tag: 'Технологии' }
+        ],
+        c: [
+          { name: 'Конструктор', brand: 'LEGO', price: 3990, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Много деталей и полезных часов.', tag: 'Игры' },
+          { name: 'Пазл', brand: 'Пазл', price: 690, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Спокойные домашние вечера.', tag: 'Развитие' },
+          { name: 'Коляска', brand: 'Baby Jogger', price: 32990, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Комфорт для прогулок с ребенком.', tag: 'Дети' },
+          { name: 'Подгузники', brand: 'Merries', price: 1490, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Базовый набор для дома.', tag: 'Кормление' },
+          { name: 'Детский рюкзак', brand: 'Backpack', price: 1990, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Для школы и прогулок.', tag: 'Школа' },
+          { name: 'Набор для творчества', brand: 'Детский мир', price: 1290, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Занятия и игры для малышей.', tag: 'Творчество' },
+          { name: 'Детский термос', brand: 'Pilligrin', price: 1290, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Поддержка напитка тёплым.', tag: 'Питание' },
+          { name: 'Автокресло', brand: 'Maxi Cosi', price: 18990, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Комфорт и безопасность в поездке.', tag: 'Безопасность' },
+          { name: 'Игрушки для малышей', brand: 'Mikky', price: 990, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Раннее развитие и радость.', tag: 'Малыши' },
+          { name: 'Подарочный набор', brand: 'Детский мир', price: 2490, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Для дня рождения или праздника.', tag: 'Подарок' },
+          { name: 'Лего для возраста 6+', brand: 'LEGO', price: 4590, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Совместные занятия и капелька творчества.', tag: 'Творчество' },
+          { name: 'Книги для детей', brand: 'Мир книги', price: 790, image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80', blurb: 'Интересно читать и пересказывать.', tag: 'Чтение' },
+          { name: 'Деревянные игрушки', brand: 'Подарок', price: 1690, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Натуральные и безопасные.', tag: 'Малыши' },
+          { name: 'Пустышка/кормушка', brand: 'Merries', price: 690, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Базовый набор для новорожденного.', tag: 'Удобно' },
+          { name: 'Сумка для школы', brand: 'Mila', price: 2490, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80', blurb: 'Простор и аккуратный дизайн.', tag: 'Школа' },
+          { name: 'Игрушечная машинка', brand: 'Play', price: 990, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Для активных игр дома.', tag: 'Играть' },
+          { name: 'Тренировочный набор', brand: 'Baby', price: 1990, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Ритм и движение для малышей.', tag: 'Развитие' },
+          { name: 'Спальный мешок', brand: 'Camping', price: 5990, image: 'https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=900&q=80', blurb: 'Для поездок и активных выходных.', tag: 'Отдых' },
+          { name: 'Детский стул', brand: 'Mila', price: 3490, image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80', blurb: 'Для спокойного приема пищи.', tag: 'В доме' }
+        ],
+        a: [
+          { name: 'Автомобильный держатель', brand: 'Baseus', price: 1890, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80', blurb: 'Для смартфона и навигации.', tag: 'Комфорт' },
+          { name: 'Компрессор', brand: 'Airline', price: 3490, image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80', blurb: 'Одна кнопка и подкачка на месте.', tag: 'Запас' },
+          { name: 'Видеорегистратор', brand: '70mai', price: 6990, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80', blurb: 'Словно дополнительный глаз за дорогой.', tag: 'Безопасность' },
+          { name: 'Набор автомобилиста', brand: 'Зубр', price: 2990, image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80', blurb: 'Небольшой базовый набор.', tag: 'Ремонт' },
+          { name: 'Органайзер для багажника', brand: 'Autoprofi', price: 1290, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80', blurb: 'Порядок и транспортировка мелочей.', tag: 'Порядок' },
+          { name: 'Автопилот-держатель', brand: 'Kenu', price: 2190, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80', blurb: 'Новый взгляд на навигацию.', tag: 'Удобно' },
+          { name: 'Шины', brand: 'Nokian', price: 8990, image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80', blurb: 'Сезонная проверка и замена.', tag: 'Сезон' },
+          { name: 'Автохимия', brand: 'Mannol', price: 1490, image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80', blurb: 'Поддержка в чистоте и порядке.', tag: 'Кузов' },
+          { name: 'Антифриз', brand: 'Liqui Moly', price: 990, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80', blurb: 'Для стабильной работы системы.', tag: 'Охлаждение' },
+          { name: 'Коврик для салона', brand: 'Autoprofi', price: 1990, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80', blurb: 'Простота и аккуратность в машине.', tag: 'Салон' },
+          { name: 'Блок питания', brand: 'Bosch', price: 1790, image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80', blurb: 'Для автомобильных работ.', tag: 'Ремонт' },
+          { name: 'Набор инструментов', brand: 'Капелька', price: 3490, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80', blurb: 'Базовый комплект для дома и гаража.', tag: 'Инструмент' },
+          { name: 'Подушка безопасности', brand: 'Airbag', price: 2990, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80', blurb: 'Для комфорта в салоне.', tag: 'Удобно' },
+          { name: 'Дворники', brand: 'Bosch', price: 1290, image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80', blurb: 'Чтобы видеть дорогу ясно.', tag: 'Безопасность' },
+          { name: 'Автоаптечка', brand: 'SST', price: 990, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80', blurb: 'Легко и всегда под рукой.', tag: 'Некоторая' },
+          { name: 'Фары LED', brand: 'Hella', price: 3990, image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80', blurb: 'Просто и заметно вечером.', tag: 'Свет' },
+          { name: 'Подвеска для смартфона', brand: 'Kenu', price: 1290, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80', blurb: 'На виду и не мешает.', tag: 'Дорожный' },
+          { name: 'Салонный ароматизатор', brand: 'Aroma', price: 690, image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80', blurb: 'Небольшая свежесть в поездке.', tag: 'Аромат' },
+          { name: 'Комплект washer', brand: 'Mannol', price: 1890, image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80', blurb: 'Поддержание чистоты деталей.', tag: 'Обслуживание' }
+        ],
+        p: [
+          { name: 'Электронный термометр', brand: 'B.Well', price: 790, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Нужно всегда иметь под рукой.', tag: 'Здоровье' },
+          { name: 'Контейнер для лекарств', brand: 'Medi', price: 590, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Порядок и аккуратность.', tag: 'Удобно' },
+          { name: 'Мазь для суставов', brand: 'Травма', price: 460, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Для физических нагрузок.', tag: 'Уход' },
+          { name: 'Витамины', brand: 'Компливит', price: 690, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Поддержка привычки к здоровью.', tag: 'Витамины' },
+          { name: 'Сироп от кашля', brand: 'Доктор', price: 520, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Легко и привычно.', tag: 'Кашель' },
+          { name: 'Мазь после укусов', brand: 'Крем', price: 350, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Для ежедневного использования.', tag: 'Комфорт' },
+          { name: 'Пульсоксиметр', brand: 'B.Well', price: 2890, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Для спокойствия и контроля.', tag: 'Контроль' },
+          { name: 'Капли в нос', brand: 'Авафлуд', price: 390, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Во время смены сезонов.', tag: 'Дышать' },
+          { name: 'Гель для рук', brand: 'Bioderma', price: 420, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Небольшой ritual care.', tag: 'Уход' },
+          { name: 'Аптечка мини', brand: 'SST', price: 890, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Под рукой, когда нужно быстро.', tag: 'Порядок' },
+          { name: 'Пластырь', brand: 'Lansinoh', price: 260, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Дома и в дороге.', tag: 'Быстро' },
+          { name: 'Глазные капли', brand: 'Azel', price: 460, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Для привычного режима.', tag: 'Взгляд' },
+          { name: 'Активные витамины', brand: 'Компливит', price: 1290, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Поддержка на регулярной основе.', tag: 'Здоровье' },
+          { name: 'Набор для первой помощи', brand: 'home', price: 1990, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Для дома, машины и поездок.', tag: 'Базовый' },
+          { name: 'Гель от боли', brand: 'Травма', price: 590, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Лёгкий и понятный формат.', tag: 'Комфорт' },
+          { name: 'Зубная паста', brand: 'Splat', price: 430, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Для утренней рутины.', tag: 'Личная гигиена' },
+          { name: 'Маска для сна', brand: 'Sleep', price: 790, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Удобно и без лишнего шума.', tag: 'Сон' },
+          { name: 'Набор витаминов', brand: 'Компливит', price: 890, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Простая поддержка режима.', tag: 'Польза' },
+          { name: 'Антисептик', brand: 'Dettol', price: 390, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', blurb: 'Для сумки и рабочего места.', tag: 'Гигиена' }
+        ],
+        u: [
+          { name: 'Б/у велосипед', brand: 'Stels', price: 8500, image: 'https://images.unsplash.com/photo-1558980664-10e7170b5df9?auto=format&fit=crop&w=900&q=80', blurb: 'Удачная покупка, если осмотреть всё сразу.', tag: 'Дешевле' },
+          { name: 'Кресло б/у', brand: 'Метта', price: 6900, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Хорошо для офиса или комнаты.', tag: 'Дом' },
+          { name: 'Б/у ноутбук', brand: 'Asus', price: 19990, image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80', blurb: 'Если важны функции, а бюджет ограничен.', tag: 'Работа' },
+          { name: 'Б/у смартфон', brand: 'Apple', price: 21990, image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80', blurb: 'Проверка состояния перед покупкой обязательна.', tag: 'Сократить' },
+          { name: 'Б/у стол', brand: 'Мебель', price: 7990, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Для дома и под конкретный интерьер.', tag: 'Дом' },
+          { name: 'Б/у кресло', brand: 'Диван', price: 8900, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Если нужен домашний комфорт без новых цен.', tag: 'Расслабление' },
+          { name: 'Б/у велосипед детский', brand: 'Stels', price: 5500, image: 'https://images.unsplash.com/photo-1558980664-10e7170b5df9?auto=format&fit=crop&w=900&q=80', blurb: 'Для прогулок и первых поездок.', tag: 'Детям' },
+          { name: 'Б/у лампа', brand: 'Philips', price: 1900, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Хороший декор и свет за меньшие деньги.', tag: 'Дом' },
+          { name: 'Б/у рюкзак', brand: 'Herschel', price: 3900, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80', blurb: 'Если нужен удобный, но бюджетный вариант.', tag: 'Путешествие' },
+          { name: 'Б/у мебель для балкона', brand: 'Мебель', price: 4900, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Меньше знаков и больше пользы.', tag: 'Дом' },
+          { name: 'Б/у фотоаппарат', brand: 'Canon', price: 17990, image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=80', blurb: 'Подходит, если не нужен новый коробочный комплект.', tag: 'Фотография' },
+          { name: 'Б/у пылесос', brand: 'Xiaomi', price: 5390, image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80', blurb: 'Чуть дешевле и всё ещё полезно дома.', tag: 'Уборка' },
+          { name: 'Б/у диван', brand: 'Mila', price: 10990, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Готовый вариант для комнаты.', tag: 'Уют' },
+          { name: 'Б/у комод', brand: 'Mila', price: 6500, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Для хранения и аккуратного интерьера.', tag: 'Дом' },
+          { name: 'Б/у настольный свет', brand: 'Philips', price: 2400, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Если хочется не тратить на новое.', tag: 'Работа' },
+          { name: 'Б/у кофемашина', brand: 'DeLonghi', price: 12500, image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80', blurb: 'Хороший вариант для дома.', tag: 'Утро' },
+          { name: 'Б/у швейная машинка', brand: 'Brother', price: 6500, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80', blurb: 'Если хобби важнее нового расхода.', tag: 'Хобби' },
+          { name: 'Б/у сумка', brand: 'Herschel', price: 2800, image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80', blurb: 'Для прогулок и обычной носки.', tag: 'Акцессуар' },
+          { name: 'Б/у чайник', brand: 'Tefal', price: 1200, image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80', blurb: 'Лёгкая функция в быту.', tag: 'Дом' }
+        ]
+      };
+
+      const categoryOrder = CATEGORY_META.map(([key]) => key);
+      const catalog = [];
+      Object.entries(PRODUCT_BANK).forEach(([cat, items]) => {
+        items.forEach((item, index) => {
+          catalog.push({
+            id: `${cat}-${index + 1}`,
+            cat,
+            name: item.name,
+            brand: item.brand,
+            price: item.price,
+            image: item.image,
+            blurb: item.blurb,
+            tag: item.tag,
+            sort: `${index + 1}`
+          });
+        });
+      });
+
+      let selectedCategory = 'all';
+      let visibleCount = 24;
+      let currentQuery = '';
+      let minPrice = '';
+      let maxPrice = '';
+      let brandFilter = '';
+
+      const root = document.getElementById('catalogRoot');
+      const tabsEl = document.getElementById('categoryTabs');
+      const brandSelect = document.getElementById('brandFilter');
+      const searchInput = document.getElementById('searchInput');
+      const minPriceInput = document.getElementById('minPrice');
+      const maxPriceInput = document.getElementById('maxPrice');
+      const clearBtn = document.getElementById('clearFilters');
+      const form = document.getElementById('searchForm');
+      const themeToggle = document.getElementById('themeToggle');
+
+      function buildBrandOptions() {
+        const brands = [...new Set(catalog.map(item => item.brand))].sort((a, b) => a.localeCompare(b, 'ru'));
+        const current = brandFilter;
+        brandSelect.innerHTML = '<option value="">Все бренды</option>' + brands.map(brand => `<option value="${brand}">${brand}</option>`).join('');
+        if (brands.includes(current)) {
+          brandSelect.value = current;
+        } else {
+          brandFilter = '';
+        }
+      }
+
+      function getFilteredCatalog() {
+        const query = currentQuery.trim().toLowerCase();
+        const min = minPrice === '' ? 0 : Number(minPrice);
+        const max = maxPrice === '' ? Number.MAX_SAFE_INTEGER : Number(maxPrice);
+        const selectedCat = selectedCategory;
+
+        return catalog.filter(item => {
+          const inCat = selectedCat === 'all' || item.cat === selectedCat;
+          const inQuery = !query || (
+            item.name.toLowerCase().includes(query) ||
+            item.brand.toLowerCase().includes(query) ||
+            item.blurb.toLowerCase().includes(query)
+          );
+          const inPrice = item.price >= min && item.price <= max;
+          const inBrand = !brandFilter || item.brand === brandFilter;
+          return inCat && inQuery && inPrice && inBrand;
+        });
+      }
+
+      function renderTabs() {
+        tabsEl.innerHTML = CATEGORY_META.map(([key, label]) => {
+          const isActive = key === selectedCategory;
+          return `<button type="button" class="chip ${isActive ? 'active' : ''}" data-cat="${key}" aria-pressed="${isActive}">${label}</button>`;
+        }).join('');
+
+        tabsEl.querySelectorAll('.chip').forEach(btn => {
+          btn.addEventListener('click', () => {
+            selectedCategory = btn.dataset.cat;
+            visibleCount = 24;
+            render();
+          });
+        });
+      }
+
+      function createProductCard(item) {
+        const a = document.createElement('a');
+        a.href = 'https://www.ozon.ru/search/?text=' + encodeURIComponent(item.name);
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.className = 'product-card';
+        a.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" loading="lazy">
+          <div class="inner">
+            <div class="product-meta">
+              <span>${item.brand}</span>
+              <span class="tag">${item.tag}</span>
+            </div>
+            <h4>${item.name}</h4>
+            <p>${item.blurb}</p>
+            <div class="bottom">
+              <strong>≈ ${item.price.toLocaleString('ru-RU')} ₽</strong>
+              <span class="store-link">Магазины</span>
+            </div>
+          </div>
+        `;
+        return a;
+      }
+
+      function makeSection(title, description, items, type = 'grid') {
+        const section = document.createElement('section');
+        section.className = 'section';
+
+        const head = document.createElement('div');
+        head.className = 'section-head';
+        head.innerHTML = `
+          <div>
+            <span class="section-kicker">Подборка</span>
+            <h2>${title}</h2>
+          </div>
+          <p>${description}</p>
+        `;
+        section.appendChild(head);
+
+        const grid = document.createElement('div');
+        grid.className = type === 'featured' ? 'mini-grid' : 'catalog-grid';
+
+        items.forEach(item => grid.appendChild(createProductCard(item)));
+        section.appendChild(grid);
+        return section;
+      }
+
+      function pickByCategory(cat, count = 4) {
+        return catalog.filter(item => cat === 'all' ? true : item.cat === cat).slice(0, count);
+      }
+
+      function renderShelf() {
+        const giftItems = pickByCategory('all', 4);
+        const homeItems = pickByCategory('h', 4);
+        const workItems = pickByCategory('e', 4);
+
+        const top = document.createElement('div');
+        top.className = 'section';
+        top.appendChild(makeSection('Топ для подарка', 'Идеи, которые приятно дарить, но не страшно использовать самому.', giftItems, 'featured'));
+        top.appendChild(makeSection('Топ для дома', 'Уютные вещи, которые быстро меняют ощущение пространства.', homeItems, 'featured'));
+        top.appendChild(makeSection('Топ для работы', 'Аксессуары и вещи, которые помогают проще работать и меньше отвлекаться.', workItems, 'featured'));
+        return top;
+      }
+
+      function renderSearchResults() {
+        const filtered = getFilteredCatalog();
+        const visible = filtered.slice(0, visibleCount);
+
+        const section = document.createElement('section');
+        section.className = 'section';
+
+        const head = document.createElement('div');
+        head.className = 'section-head';
+        const title = currentQuery || selectedCategory === 'all' ? 'Что нашли сегодня' : `Идеи в категории “${CATEGORY_META.find(([key]) => key === selectedCategory)?.[1]}”`;
+        const desc = currentQuery
+          ? `Выбрано по запросу “${currentQuery}” — ${filtered.length} варианта.`
+          : `На этой странице удобно листать и выбирать по категории — всего ${filtered.length} товаров.`;
+        head.innerHTML = `
+          <div>
+            <span class="section-kicker">Листаем</span>
+            <h2>${title}</h2>
+          </div>
+          <p>${desc}</p>
+        `;
+        section.appendChild(head);
+
+        const grid = document.createElement('div');
+        grid.className = 'catalog-grid';
+
+        if (!visible.length) {
+          const empty = document.createElement('div');
+          empty.className = 'empty';
+          empty.textContent = 'Ничего не нашлось по запросу и фильтрам. Попробуйте сбросить цену или выбрать другую категорию.';
+          section.appendChild(empty);
+          return section;
+        }
+
+        visible.forEach(item => grid.appendChild(createProductCard(item)));
+        section.appendChild(grid);
+
+        if (filtered.length > visible.length) {
+          const more = document.createElement('button');
+          more.type = 'button';
+          more.className = 'load-more';
+          more.textContent = `Показать ещё ${Math.min(12, filtered.length - visible.length)}`;
+          more.addEventListener('click', () => {
+            visibleCount += 12;
+            render();
+          });
+          section.appendChild(more);
+        }
+
+        return section;
+      }
+
+      function renderCategoryBlock() {
+        const categoryName = CATEGORY_META.find(([key]) => key === selectedCategory)?.[1] || 'Все';
+        const categoryItems = getFilteredCatalog().slice(0, 4);
+
+        if (!categoryItems.length) return null;
+
+        const block = document.createElement('section');
+        block.className = 'category-block';
+        block.innerHTML = `<h3>${categoryName}: лучшие рекомендации</h3>`;
+
+        const grid = document.createElement('div');
+        grid.className = 'catalog-grid';
+        categoryItems.forEach(item => grid.appendChild(createProductCard(item)));
+        block.appendChild(grid);
+        return block;
+      }
+
+      function render() {
+        root.innerHTML = '';
+
+        const firstSection = renderShelf();
+        root.appendChild(firstSection);
+
+        const block = renderCategoryBlock();
+        if (block) {
+          root.appendChild(block);
+        }
+
+        root.appendChild(renderSearchResults());
+
+        renderTabs();
+      }
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        currentQuery = searchInput.value;
+        visibleCount = 24;
+        render();
+      });
+
+      searchInput.addEventListener('input', () => {
+        currentQuery = searchInput.value;
+        visibleCount = 24;
+        render();
+      });
+
+      minPriceInput.addEventListener('input', () => {
+        minPrice = minPriceInput.value;
+        visibleCount = 24;
+        render();
+      });
+
+      maxPriceInput.addEventListener('input', () => {
+        maxPrice = maxPriceInput.value;
+        visibleCount = 24;
+        render();
+      });
+
+      brandSelect.addEventListener('change', () => {
+        brandFilter = brandSelect.value;
+        visibleCount = 24;
+        render();
+      });
+
+      clearBtn.addEventListener('click', () => {
+        selectedCategory = 'all';
+        currentQuery = '';
+        minPrice = '';
+        maxPrice = '';
+        brandFilter = '';
+        visibleCount = 24;
+        searchInput.value = '';
+        minPriceInput.value = '';
+        maxPriceInput.value = '';
+        brandSelect.value = '';
+        render();
+      });
+
+      themeToggle.addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('naidetsya-theme', next);
+      });
+
+      try {
+        const saved = localStorage.getItem('naidetsya-theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+        }
+      } catch (e) {}
+
+      buildBrandOptions();
+      render();
+    })();
+  </script>
 </body>
 </html>
