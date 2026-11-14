@@ -26,26 +26,10 @@
   </style>
 </head>
 <body>
-  <header class="shell masthead">
-    <a class="brandmark" href="#top" aria-label="Найдётся — на главную"><span class="monogram">Н</span><span class="brandname">Найдётся</span></a>
-    <div class="top-actions"><span class="edition">Ваш личный гид по находкам</span><button class="theme-toggle" id="theme" type="button" aria-label="Переключить тему" title="Переключить тему">◐</button></div>
-  </header>
+  <header class="shell masthead"><a class="brandmark" href="#top" aria-label="Найдётся — на главную"><span class="monogram">Н</span><span class="brandname">Найдётся</span></a><div class="top-actions"><span class="edition">Ваш личный гид по находкам</span><button class="theme-toggle" id="theme" type="button" aria-label="Переключить тему" title="Переключить тему">◐</button></div></header>
   <main id="top" class="shell">
-    <section class="hero" aria-labelledby="hero-title">
-      <svg class="hero-ornament" viewBox="0 0 300 300" fill="none" aria-hidden="true"><circle cx="150" cy="150" r="111" stroke="currentColor" opacity=".55"/><circle cx="150" cy="150" r="92" stroke="currentColor" opacity=".3"/><path d="M150 31v35m0 168v35M31 150h35m168 0h35M66 66l25 25m118 118 25 25m0-168-25 25M91 209l-25 25" stroke="currentColor" opacity=".5"/><path d="m150 84 19 47 47 19-47 19-19 47-19-47-47-19 47-19 19-47Z" stroke="currentColor"/><circle cx="150" cy="150" r="5" fill="currentColor"/></svg>
-      <div class="hero-copy"><span class="eyebrow">Покупки с хорошим вкусом</span><h1 id="hero-title">Меньше шума.<br><em>Больше находок.</em></h1><p>Продуманные идеи, магазины и ориентиры — чтобы найти именно то, что подходит вам.</p><div class="hero-note"><span>Независимые подборки</span><span>Без аккаунта и лишних данных</span></div></div>
-    </section>
-    <section class="search-section" aria-label="Поиск и фильтры">
-      <form class="searchbar" id="search" role="search"><label class="searchbox"><span class="sr-only">Что ищем?</span><input id="query" type="search" placeholder="Например, пальто, кофемашина, подарок" autocomplete="off"></label><button class="gold-button" type="submit">Найти</button></form>
-      <nav class="categories" id="categories" aria-label="Категории товаров"></nav>
-      <div class="filters" aria-label="Фильтры каталога">
-        <div class="filter"><label for="price-min">Цена от, ₽</label><input id="price-min" type="number" min="0" step="500" inputmode="numeric" placeholder="Любая"></div>
-        <div class="filter"><label for="price-max">Цена до, ₽</label><input id="price-max" type="number" min="0" step="500" inputmode="numeric" placeholder="Любая"></div>
-        <div class="filter"><label for="brand-filter">Бренд</label><select id="brand-filter"><option value="">Все бренды</option></select></div>
-        <button class="reset" id="reset-filters" type="button">Сбросить фильтры</button>
-        <span class="filter-note">Фильтры применяются к подборкам ниже</span>
-      </div>
-    </section>
+    <section class="hero" aria-labelledby="hero-title"><svg class="hero-ornament" viewBox="0 0 300 300" fill="none" aria-hidden="true"><circle cx="150" cy="150" r="111" stroke="currentColor" opacity=".55"/><circle cx="150" cy="150" r="92" stroke="currentColor" opacity=".3"/><path d="M150 31v35m0 168v35M31 150h35m168 0h35M66 66l25 25m118 118 25 25m0-168-25 25M91 209l-25 25" stroke="currentColor" opacity=".5"/><path d="m150 84 19 47 47 19-47 19-19 47-19-47-47-19 47-19 19-47Z" stroke="currentColor"/><circle cx="150" cy="150" r="5" fill="currentColor"/></svg><div class="hero-copy"><span class="eyebrow">Покупки с хорошим вкусом</span><h1 id="hero-title">Меньше шума.<br><em>Больше находок.</em></h1><p>Продуманные идеи, магазины и ориентиры — чтобы найти именно то, что подходит вам.</p><div class="hero-note"><span>Независимые подборки</span><span>Без аккаунта и лишних данных</span></div></div></section>
+    <section class="search-section" aria-label="Поиск и фильтры"><form class="searchbar" id="search" role="search"><label class="searchbox"><span class="sr-only">Что ищем?</span><input id="query" type="search" placeholder="Например, пальто, кофемашина, подарок" autocomplete="off"></label><button class="gold-button" type="submit">Найти</button></form><nav class="categories" id="categories" aria-label="Категории товаров"></nav><div class="filters" aria-label="Фильтры каталога"><div class="filter"><label for="price-min">Цена от, ₽</label><input id="price-min" type="number" min="0" step="500" inputmode="numeric" placeholder="Любая"></div><div class="filter"><label for="price-max">Цена до, ₽</label><input id="price-max" type="number" min="0" step="500" inputmode="numeric" placeholder="Любая"></div><div class="filter"><label for="brand-filter">Бренд</label><select id="brand-filter"><option value="">Все бренды</option></select></div><button class="reset" id="reset-filters" type="button">Сбросить фильтры</button><span class="filter-note">Фильтры применяются к подборкам ниже</span></div></section>
     <div id="results" class="main-content" aria-live="polite"></div>
     <footer class="footer">«Найдётся» — независимый гид, не магазин. Карточки и бренды — редакционные примеры; цены являются примерными ориентирами, не предложениями продавцов и не обновляются в реальном времени. Наличие, бренд, цену, характеристики и условия доставки всегда уточняйте на сайте магазина. Поиск по магазинам открывается в новой вкладке.</footer>
   </main>
@@ -54,70 +38,110 @@
   'use strict';
   var CATEGORIES=[['all','Все'],['e','Электроника'],['f','Одежда'],['b','Красота'],['h','Дом'],['g','Продукты'],['c','Детям'],['k','Книги'],['s','Спорт'],['a','Авто'],['p','Аптека'],['u','Б/у']];
   var CATEGORY_NAMES={};CATEGORIES.forEach(function(c){CATEGORY_NAMES[c[0]]=c[1]});
-  var RULES={e:/телефон|iphone|айфон|samsung|самсунг|xiaomi|ноутбук|наушник|телевизор|планшет|монитор|ssd|кофемашин|пылесос/i,f:/пальто|кроссовк|куртк|джинс|платье|футболк|ботинк|сумк|рюкзак|обувь|шарф|свитер|худи/i,b:/крем|шампун|духи|парфюм|помад|тушь|сыворотк|косметик/i,h:/дрель|диван|стол|стул|кроват|шкаф|матрас|ламп|светильник|инструмент|плед|термокружк/i,g:/молоко|хлеб|сыр|мясо|кофе|чай|шоколад|овощ|фрукт|продукт/i,k:/книг|роман|учебник|манга|комикс/i,a:/шины|масло|аккумулятор|колодки|автомобил|запч��ст/i,s:/гантел|велосипед|палатк|лыж|мяч|тренажер|самокат|коньки/i,c:/коляск|подгузник|игрушк|конструктор|лего|детск|пазл|автокресл/i,p:/таблетк|витамин|лекарств|мазь|сироп|аптеч/i,u:/б\/у|с рук|подержан|бывш/i};
-  // Каталог — локальные редакционные идеи, не live-товары и не рекламные цены.
+  var RULES={e:/телефон|iphone|айфон|samsung|самсунг|xiaomi|ноутбук|наушник|телевизор|планшет|монитор|ssd|кофемашин|пылесос|камера|колонк/i,f:/пальто|кроссовк|куртк|джинс|платье|футболк|ботинк|сумк|рюкзак|обувь|шарф|свитер|худи|перчатк/i,b:/крем|шампун|духи|парфюм|помад|тушь|сыворотк|косметик|маск/i,h:/дрель|диван|стол|стул|кроват|шкаф|матрас|ламп|светильник|инструмент|плед|термокружк|посуда/i,g:/молоко|хлеб|сыр|мясо|кофе|чай|шоколад|овощ|фрукт|продукт/i,k:/книг|роман|учебник|манга|комикс/i,a:/шины|масло|аккумулятор|колодки|автомобил|запчаст/i,s:/гантел|велосипед|палатк|лыж|мяч|тренажер|самокат|коньки/i,c:/коляск|подгузник|игрушк|конструктор|лего|детск|пазл|автокресл/i,p:/таблетк|витамин|лекарств|мазь|сироп|аптеч/i,u:/б\/у|с рук|подержан|бывш/i};
+  // Редакционные идеи, не live-каталог. Стоимость — примерный ориентир, а не цена продавца.
   var PRODUCTS=[
-    {name:'Шерстяное пальто',brand:'Zarina',cat:'f',price:12990,why:'Классический силуэт для холодного города.'},
-    {name:'Зимние ботинки',brand:'Rieker',cat:'f',price:10990,why:'Сравните подошву, утеплитель и размерную сетку.'},
-    {name:'Термобельё',brand:'ТВОЁ',cat:'f',price:2490,why:'Базовый слой для прогулок и поездок.'},
-    {name:'Тёплый шарф',brand:'Finn Flare',cat:'f',price:3990,why:'Лаконичный аксессуар на каждый день.'},
-    {name:'Перчатки',brand:'Befree',cat:'f',price:1790,why:'Небольшое сезонное обновление гардероба.'},
-    {name:'Увлажнитель воздуха',brand:'Xiaomi',cat:'e',price:6990,why:'Помогает поддерживать комфортный микроклимат.'},
+    {name:'Шерстяное пальто',brand:'Zarina',cat:'f',price:12990,why:'Классический силуэт для холодного города.',season:true},
+    {name:'Зимние ботинки',brand:'Rieker',cat:'f',price:10990,why:'Сравните подошву, утеплитель и размерную сетку.',season:true},
+    {name:'Термобельё',brand:'ТВОЁ',cat:'f',price:2490,why:'Базовый слой для прогулок и поездок.',season:true},
+    {name:'Тёплый шарф',brand:'Finn Flare',cat:'f',price:3990,why:'Лаконичный аксессуар на каждый день.',season:true},
+    {name:'Перчатки',brand:'Befree',cat:'f',price:1790,why:'Небольшое сезонное обновление гардероба.',season:true},
+    {name:'Зимняя шапка',brand:'N.ТВОЁ',cat:'f',price:1990,why:'Тёплый аксессуар для прогулок.',season:true},
+    {name:'Пуховик городской',brand:'Baon',cat:'f',price:18990,why:'Сверьте температурный режим и состав.',season:true},
+    {name:'Непромокаемые варежки',brand:'Reima',cat:'f',price:2990,why:'Для зимних прогулок и активного отдыха.',season:true},
+    {name:'Домашние тапочки',brand:'De Fonseca',cat:'f',price:2490,why:'Уютная пара для дома.',season:true},
+    {name:'Увлажнитель воздуха',brand:'Xiaomi',cat:'e',price:6990,why:'Помогает поддерживать комфортный микроклимат.',season:true},
     {name:'Беспроводные наушники',brand:'JBL',cat:'e',price:5990,why:'Для музыки, подкастов и дороги.'},
-    {name:'Термокружка',brand:'Arctic',cat:'h',price:2290,why:'Удобный спутник для долгих прогулок.'},
-    {name:'Настольная лампа',brand:'Xiaomi',cat:'h',price:3490,why:'Мягкий свет для уютного вечера.'},
-    {name:'Уходовый набор',brand:'Золотое яблоко',cat:'b',price:3290,why:'Идея небольшого подарка себе или близким.'},
-    {name:'Книга для зимнего вечера',brand:'Эксмо',cat:'k',price:990,why:'Выберите жанр под настроение.'},
-    {name:'Плед',brand:'уютный дом',cat:'h',price:2990,why:'Текстильный акцент для спокойных вечеров.'},
-    {name:'Кофе в зёрнах',brand:'Tasty Coffee',cat:'g',price:1490,why:'Попробуйте новый сорт или обжарку.'},
-    {name:'Фитнес-коврик',brand:'Demix',cat:'s',price:1990,why:'Для домашних тренировок и растяжки.'},
-    {name:'Набор для творчества',brand:'Детский мир',cat:'c',price:1290,why:'Подбирайте по возрасту и интересам.'},
-    {name:'Автомобильный держатель',brand:'Baseus',cat:'a',price:1890,why:'Проверьте тип крепления и совместимость.'},
-    {name:'Подарочный чайный набор',brand:'Кантата',cat:'g',price:2190,why:'Универсальная идея для зимнего подарка.'},
+    {name:'Портативная колонка',brand:'JBL',cat:'e',price:7990,why:'Компактный звук для дома и поездок.'},
+    {name:'Смарт-часы',brand:'Xiaomi',cat:'e',price:5490,why:'Уведомления и активность на запястье.'},
+    {name:'Зарядное устройство USB-C',brand:'Anker',cat:'e',price:2490,why:'Проверьте мощность и совместимость устройств.'},
+    {name:'Пауэрбанк',brand:'Baseus',cat:'e',price:2990,why:'Запас энергии в дороге.'},
+    {name:'Механическая клавиатура',brand:'Redragon',cat:'e',price:4990,why:'Для работы, учёбы и игр.'},
+    {name:'Беспроводная мышь',brand:'Logitech',cat:'e',price:2290,why:'Удобный аксессуар для рабочего стола.'},
+    {name:'Веб-камера',brand:'Logitech',cat:'e',price:4990,why:'Для видеозвонков и удалённой работы.'},
+    {name:'Электронная книга',brand:'PocketBook',cat:'e',price:14990,why:'Компактная библиотека для поездок.'},
+    {name:'Робот-пылесос',brand:'Xiaomi',cat:'e',price:17990,why:'Сравните навигацию и функции уборки.'},
+    {name:'Кроссовки на каждый день',brand:'Demix',cat:'f',price:4990,why:'Универсальная пара для городских маршрутов.'},
+    {name:'Базовая футболка',brand:'Uniqlo',cat:'f',price:1990,why:'Простой слой для повседневного гардероба.'},
+    {name:'Джинсы прямого кроя',brand:'Levi’s',cat:'f',price:8990,why:'Проверьте посадку и таблицу размеров.'},
+    {name:'Городской рюкзак',brand:'Herschel',cat:'f',price:7990,why:'Обратите внимание на объём и отделение для ноутбука.'},
+    {name:'Кожаный ремень',brand:'Cavaletto',cat:'f',price:3490,why:'Практичный аксессуар на каждый день.'},
+    {name:'Лёгкая ветровка',brand:'Finn Flare',cat:'f',price:6990,why:'Для прогулок в переменчивую погоду.'},
+    {name:'Платье миди',brand:'Zarina',cat:'f',price:5990,why:'Лаконичная модель для разных случаев.'},
+    {name:'Кошелёк',brand:'Askent',cat:'f',price:4990,why:'Компактный аксессуар из кожи.'},
+    {name:'Увлажняющий крем',brand:'Librederm',cat:'b',price:890,why:'Подбирайте средство под тип кожи.'},
+    {name:'Шампунь для ежедневного ухода',brand:'L’Oréal Paris',cat:'b',price:690,why:'Сверьте состав и рекомендации производителя.'},
+    {name:'Парфюмированный набор',brand:'Золотое яблоко',cat:'b',price:3990,why:'Идея небольшого подарка себе или близким.'},
+    {name:'Сыворотка для лица',brand:'The Ordinary',cat:'b',price:1790,why:'Перед применением изучите состав и инструкцию.'},
+    {name:'Бальзам для губ',brand:'СпивакЪ',cat:'b',price:390,why:'Компактное средство для ежедневного ухода.'},
+    {name:'Маска для волос',brand:'Estel',cat:'b',price:990,why:'Уходовое дополнение к привычному ритуалу.'},
+    {name:'Настольная лампа',brand:'Xiaomi',cat:'h',price:3490,why:'Мягкий свет для рабочего стола.'},
+    {name:'Термокружка',brand:'Arctic',cat:'h',price:2290,why:'Удобный спутник для долгих прогулок.',season:true},
+    {name:'Плед',brand:'уютный дом',cat:'h',price:2990,why:'Текстильный акцент для спокойных вечеров.',season:true},
+    {name:'Комплект постельного белья',brand:'Текстильная лавка',cat:'h',price:3990,why:'Выбирайте ткань и размер под свою кровать.'},
+    {name:'Керамическая ваза',brand:'4Home',cat:'h',price:1890,why:'Небольшой акцент для интерьера.'},
+    {name:'Органайзер для хранения',brand:'Idea',cat:'h',price:790,why:'Помогает навести порядок в шкафу и ящиках.'},
+    {name:'Набор кухонных ножей',brand:'Tefal',cat:'h',price:4990,why:'Сравните материал лезвий и комплект.'},
+    {name:'Кофемолка',brand:'Bosch',cat:'h',price:3990,why:'Для свежемолотого кофе дома.'},
     {name:'Домашний набор инструментов',brand:'Зубр',cat:'h',price:4490,why:'Проверьте состав и назначение набора.'},
+    {name:'Кофе в зёрнах',brand:'Tasty Coffee',cat:'g',price:1490,why:'Попробуйте новый сорт или обжарку.'},
+    {name:'Подарочный чайный набор',brand:'Кантата',cat:'g',price:2190,why:'Универсальная идея для зимнего подарка.',season:true},
+    {name:'Оливковое масло',brand:'Monini',cat:'g',price:1290,why:'Сравните объём и тип масла.'},
+    {name:'Набор специй',brand:'Айдиго',cat:'g',price:790,why:'Несколько новых вкусов для домашних блюд.'},
+    {name:'Шоколад ручной работы',brand:'Победа',cat:'g',price:490,why:'Небольшое сладкое дополнение к подарку.'},
+    {name:'Термос',brand:'Arctic',cat:'g',price:2490,why:'Для горячих напитков в дороге.',season:true},
+    {name:'Многоразовая бутылка для воды',brand:'Tritan',cat:'g',price:990,why:'Лёгкая бутылка для повседневных поездок.'},
+    {name:'Книга для зимнего вечера',brand:'Эксмо',cat:'k',price:990,why:'Выберите жанр под настроение.',season:true},
+    {name:'Ежедневник в твёрдой обложке',brand:'Молескин',cat:'k',price:2490,why:'Для заметок, планов и идей.'},
+    {name:'Иллюстрированный атлас',brand:'АСТ',cat:'k',price:1590,why:'Подарочное издание для любознательных.'},
+    {name:'Набор закладок',brand:'Читай-город',cat:'k',price:390,why:'Маленький аксессуар для любителей книг.'},
+    {name:'Настольная игра для компании',brand:'Hobby World',cat:'k',price:2990,why:'Проверьте количество игроков и правила.'},
+    {name:'Фитнес-коврик',brand:'Demix',cat:'s',price:1990,why:'Для домашних тренировок и растяжки.'},
+    {name:'Эспандер набор',brand:'TORRES',cat:'s',price:990,why:'Компактный инвентарь для занятий дома.'},
+    {name:'Гантели разборные',brand:'Lite Weights',cat:'s',price:3990,why:'Подбирайте вес под уровень подготовки.'},
+    {name:'Скакалка скоростная',brand:'Reebok',cat:'s',price:1290,why:'Простой инвентарь для кардиотренировок.'},
+    {name:'Рюкзак туристический',brand:'Сплав',cat:'s',price:6990,why:'Проверьте объём, посадку и поясной ремень.'},
+    {name:'Набор для творчества',brand:'Детский мир',cat:'c',price:1290,why:'Подбирайте по возрасту и интересам.'},
+    {name:'Конструктор',brand:'LEGO',cat:'c',price:3990,why:'Сверьте рекомендуемый возраст и число деталей.'},
+    {name:'Настольная игра для детей',brand:'Bondibon',cat:'c',price:1490,why:'Идея для совместного семейного вечера.'},
+    {name:'Детский термос',brand:'Pilligrin',cat:'c',price:1290,why:'Проверьте объём и рекомендации по уходу.'},
+    {name:'Пазл на 500 деталей',brand:'Step Puzzle',cat:'c',price:690,why:'Спокойное занятие для выходного дня.'},
+    {name:'Автомобильный держатель',brand:'Baseus',cat:'a',price:1890,why:'Проверьте тип крепления и совместимость.'},
+    {name:'Компрессор автомобильный',brand:'Airline',cat:'a',price:3490,why:'Сравните производительность и питание.'},
+    {name:'Набор автомобилиста',brand:'Зубр',cat:'a',price:2990,why:'Сверьте комплектацию и требования региона.'},
+    {name:'Автомобильный видеорегистратор',brand:'70mai',cat:'a',price:6990,why:'Проверьте разрешение и способ установки.'},
+    {name:'Органайзер в багажник',brand:'Autoprofi',cat:'a',price:1290,why:'Помогает аккуратно хранить мелочи.'},
     {name:'Органайзер для таблеток',brand:'Pillbox',cat:'p',price:490,why:'Это аксессуар, не медицинский товар.'},
-    {name:'Б/у велосипед',brand:'Stels',cat:'u',price:8500,why:'Для сезонной покупки — осмотрите товар лично.'}
+    {name:'Электронный термометр',brand:'B.Well',cat:'p',price:790,why:'Перед использованием прочитайте инструкцию.'},
+    {name:'Аптечный контейнер',brand:'Пластишка',cat:'p',price:590,why:'Храните лекарства согласно их упаковке.'},
+    {name:'Б/у велосипед',brand:'Stels',cat:'u',price:8500,why:'Для сезонной покупки — осмотрите товар лично.'},
+    {name:'Б/у объектив для камеры',brand:'Canon',cat:'u',price:12900,why:'Проверьте совместимость и состояние оптики.'},
+    {name:'Кресло офисное б/у',brand:'Метта',cat:'u',price:6900,why:'Осмотрите механизм и обивку перед покупкой.'}
   ];
-  var STORES=[
-    ['Wildberries','https://www.wildberries.ru/catalog/0/search.aspx?search=','Универсальный маркетплейс','x9 f9 b8 h8 c8 s7 e5 k5 a4 g2'],
-    ['Ozon','https://www.ozon.ru/search/?text=','Товары разных категорий','x9 e8 f7 b7 h8 c8 s7 k8 a6 g4'],
-    ['Яндекс Маркет','https://market.yandex.ru/search?text=','Сравнение предложений','x9 e9 f5 b6 h8 c7 s6 k4 a5 g3'],
-    ['Авито','https://www.avito.ru/rossiya?q=','Новое и б/у','x8 u10 a9 e7 h7 s7 f5 c6 k4'],
-    ['Мегамаркет','https://megamarket.ru/catalog/?q=','Маркетплейс','x7 e8 f4 b5 h7 c6 s5 k3 a4 g5'],
-    ['AliExpress','https://aliexpress.ru/wholesale?SearchText=','Аксессуары и гаджеты','x6 e6 f5 h6 a6 c5 s4'],
-    ['DNS','https://www.dns-shop.ru/search/?q=','Компьютеры и техника','x3 e10 h3'],
-    ['М.Видео','https://www.mvideo.ru/product-list-page?q=','Техника и электроника','x3 e9 h6'],
-    ['Lamoda','https://www.lamoda.ru/catalogsearch/result/?q=','Одежда и аксессуары','x3 f10 s6 b4'],
-    ['Золотое яблоко','https://goldapple.ru/catalogsearch/result/?q=','Косметика и парфюмерия','x2 b10'],
-    ['Лэтуаль','https://www.letu.ru/s/search?q=','Косметика и парфюмерия','x2 b9'],
-    ['Лемана ПРО','https://leroymerlin.ru/search/?q=','Дом и ремонт','x3 h10 a3'],
-    ['Детский мир','https://www.detmir.ru/search/results?q=','Товары для детей','x2 c10'],
-    ['Читай-город','https://www.chitai-gorod.ru/search?phrase=','Книги и канцелярия','x2 k10'],
-    ['Спортмастер','https://www.sportmaster.ru/catalog/?q=','Спортивные товары','x2 s10 f5'],
-    ['Exist','https://exist.ru/Price/?pcode=','Автозапчасти','x2 a10'],
-    ['Apteka.ru','https://apteka.ru/search/?q=','Аптека','x1 p10']
-  ];
+  var SEASON_IDS=['Шерстяное пальто','Зимние ботинки','Термобельё','Тёплый шарф','Перчатки','Зимняя шапка','Пуховик городской','Непромокаемые варежки','Увлажнитель воздуха','Плед'];
+  PRODUCTS.forEach(function(p){p.season=SEASON_IDS.indexOf(p.name)>-1});
+  var STORES=[['Wildberries','https://www.wildberries.ru/catalog/0/search.aspx?search=','Универсальный маркетплейс','x9 f9 b8 h8 c8 s7 e5 k5 a4 g2'],['Ozon','https://www.ozon.ru/search/?text=','Товары разных категорий','x9 e8 f7 b7 h8 c8 s7 k8 a6 g4'],['Яндекс Маркет','https://market.yandex.ru/search?text=','Сравнение предложений','x9 e9 f5 b6 h8 c7 s6 k4 a5 g3'],['Авито','https://www.avito.ru/rossiya?q=','Новое и б/у','x8 u10 a9 e7 h7 s7 f5 c6 k4'],['Мегамаркет','https://megamarket.ru/catalog/?q=','Маркетплейс','x7 e8 f4 b5 h7 c6 s5 k3 a4 g5'],['AliExpress','https://aliexpress.ru/wholesale?SearchText=','Аксессуары и гаджеты','x6 e6 f5 h6 a6 c5 s4'],['DNS','https://www.dns-shop.ru/search/?q=','Компьютеры и техника','x3 e10 h3'],['М.Видео','https://www.mvideo.ru/product-list-page?q=','Техника и электроника','x3 e9 h6'],['Lamoda','https://www.lamoda.ru/catalogsearch/result/?q=','Одежда и аксессуары','x3 f10 s6 b4'],['Золотое яблоко','https://goldapple.ru/catalogsearch/result/?q=','Косметика и парфюмерия','x2 b10'],['Лэтуаль','https://www.letu.ru/s/search?q=','Косметика и парфюмерия','x2 b9'],['Лемана ПРО','https://leroymerlin.ru/search/?q=','Дом и ремонт','x3 h10 a3'],['Детский мир','https://www.detmir.ru/search/results?q=','Товары для детей','x2 c10'],['Читай-город','https://www.chitai-gorod.ru/search?phrase=','Книги и канцелярия','x2 k10'],['Спортмастер','https://www.sportmaster.ru/catalog/?q=','Спортивные товары','x2 s10 f5'],['Exist','https://exist.ru/Price/?pcode=','Автозапчасти','x2 a10'],['Apteka.ru','https://apteka.ru/search/?q=','Аптека','x1 p10']];
   STORES.forEach(function(s){s.scores={};s[3].split(' ').forEach(function(v){s.scores[v[0]]=Number(v.slice(1))})});
   var $=function(id){return document.getElementById(id)},input=$('query'),results=$('results'),categories=$('categories'),minInput=$('price-min'),maxInput=$('price-max'),brandSelect=$('brand-filter');
   var selectedCategory='all',showEveryStore=false;
   function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n}
   function detected(q){for(var k in RULES)if(RULES[k].test(q))return k;return null}
   function activeCategory(q){return selectedCategory==='all'?(detected(q)||'all'):selectedCategory}
-  function populateBrands(){var prior=brandSelect.value,brands=Array.from(new Set(PRODUCTS.map(function(p){return p.brand}))).sort(function(a,b){return a.localeCompare(b,'ru')});brandSelect.textContent='';var all=el('option','', 'Все бренды');all.value='';brandSelect.appendChild(all);brands.forEach(function(name){var option=el('option','',name);option.value=name;brandSelect.appendChild(option)});if(brands.indexOf(prior)>-1)brandSelect.value=prior}
-  function filteredProducts(cat,query,seasonOnly){var lower=query.toLocaleLowerCase('ru'),min=Number(minInput.value)||0,max=Number(maxInput.value)||Infinity,brand=brandSelect.value;return PRODUCTS.filter(function(p){var textMatch=!lower||p.name.toLocaleLowerCase('ru').indexOf(lower)>-1||p.brand.toLocaleLowerCase('ru').indexOf(lower)>-1||p.why.toLocaleLowerCase('ru').indexOf(lower)>-1;var categoryMatch=cat==='all'||p.cat===cat;var seasonMatch=!seasonOnly||p.cat==='f'||p.cat==='h'||p.cat==='e'||p.cat==='k'||p.cat==='g'||p.cat==='b';return textMatch&&categoryMatch&&seasonMatch&&p.price>=min&&p.price<=max&&(!brand||brand===p.brand)})}
-  function makeSearchHref(base,query){return base+encodeURIComponent(query)}
-  function productCard(product,index,season){var card=el('article','product-card');card.setAttribute('data-index',String(index+1).padStart(2,'0'));var meta=el('div','product-meta');meta.appendChild(el('span','',product.brand));meta.appendChild(el('span','season-badge',season?'ЗИМНЯЯ ПОДБОРКА':CATEGORY_NAMES[product.cat]));card.appendChild(meta);card.appendChild(el('h3','',product.name));card.appendChild(el('p','',product.why));var bottom=el('div','product-bottom'),price=el('div','estimate','≈ '+product.price.toLocaleString('ru-RU')+' ₽');price.appendChild(el('small','','примерный ориентир'));bottom.appendChild(price);var link=el('a','card-link','Смотреть магазины');link.href=makeSearchHref('https://www.ozon.ru/search/?text=',product.name);link.target='_blank';link.rel='noopener noreferrer';bottom.appendChild(link);card.appendChild(bottom);return card}
+  function populateBrands(){var prior=brandSelect.value,brands=Array.from(new Set(PRODUCTS.map(function(p){return p.brand}))).sort(function(a,b){return a.localeCompare(b,'ru')});brandSelect.textContent='';var all=el('option','','Все бренды');all.value='';brandSelect.appendChild(all);brands.forEach(function(name){var option=el('option','',name);option.value=name;brandSelect.appendChild(option)});if(brands.indexOf(prior)>-1)brandSelect.value=prior}
+  function matchesSearch(p,q){if(!q)return true;var text=(p.name+' '+p.brand+' '+p.why+' '+(p.keywords||'')).toLocaleLowerCase('ru');return text.indexOf(q.toLocaleLowerCase('ru'))>-1}
+  function filteredProducts(cat,q,seasonOnly){var min=minInput.value===''?0:Number(minInput.value),max=maxInput.value===''?Infinity:Number(maxInput.value),brand=brandSelect.value;return PRODUCTS.filter(function(p){return(cat==='all'||p.cat===cat)&&(!seasonOnly||p.season)&&p.price>=min&&p.price<=max&&(!brand||brand===p.brand)&&matchesSearch(p,q)})}
+  function searchHref(base,q){return base+encodeURIComponent(q)}
+  function productCard(product,index,season){var card=el('article','product-card');card.setAttribute('data-index',String(index+1).padStart(2,'0'));var meta=el('div','product-meta');meta.appendChild(el('span','',product.brand));meta.appendChild(el('span','season-badge',season?'СЕЗОННЫЙ ВЫБОР':CATEGORY_NAMES[product.cat]));card.appendChild(meta);card.appendChild(el('h3','',product.name));card.appendChild(el('p','',product.why));var bottom=el('div','product-bottom'),price=el('div','estimate','≈ '+product.price.toLocaleString('ru-RU')+' ₽');price.appendChild(el('small','','примерный ориентир'));bottom.appendChild(price);var link=el('a','card-link','Смотреть магазины');link.href=searchHref('https://www.ozon.ru/search/?text=',product.name);link.target='_blank';link.rel='noopener noreferrer';bottom.appendChild(link);card.appendChild(bottom);return card}
   function renderGrid(container,list,season){container.textContent='';if(!list.length){container.appendChild(el('div','empty','По этим фильтрам ничего не нашлось. Попробуйте изменить цену, категорию или бренд.'));return}list.forEach(function(p,i){container.appendChild(productCard(p,i,season))})}
-  function storeCard(store,q){var a=el('a','store'),initial=el('span','store-initial',store[0].slice(0,1));initial.setAttribute('aria-hidden','true');a.appendChild(initial);var info=el('span','store-info');info.appendChild(el('b','',store[0]));info.appendChild(el('span','',store[2]));a.appendChild(info);a.appendChild(el('span','store-arrow','↗'));a.href=makeSearchHref(store[1],q);a.target='_blank';a.rel='noopener noreferrer';return a}
+  function storeCard(store,q){var a=el('a','store'),initial=el('span','store-initial',store[0].slice(0,1));initial.setAttribute('aria-hidden','true');a.appendChild(initial);var info=el('span','store-info');info.appendChild(el('b','',store[0]));info.appendChild(el('span','',store[2]));a.appendChild(info);a.appendChild(el('span','store-arrow','↗'));a.href=searchHref(store[1],q);a.target='_blank';a.rel='noopener noreferrer';return a}
   function sectionHeader(kicker,title,description,count){var header=el('div','section-head'),left=el('div','');left.appendChild(el('span','section-kicker',kicker));left.appendChild(el('h2','',title));header.appendChild(left);if(description)header.appendChild(el('p','',description));if(count!==undefined)header.appendChild(el('span','count',count+' находок'));return header}
-  function renderCategories(active){categories.textContent='';CATEGORIES.forEach(function(c){var b=el('button','chip',c[1]);b.type='button';b.setAttribute('aria-pressed',String(c[0]===active));b.addEventListener('click',function(){selectedCategory=c[0];showEveryStore=false;render()});categories.appendChild(b)})}
-  function render(){var q=input.value.trim(),cat=activeCategory(q);renderCategories(cat);results.textContent='';
-    var collection=filteredProducts(cat,q,false),season=filteredProducts('all','',true).slice(0,10);
-    var intro=el('div','');intro.appendChild(sectionHeader(q?'ВАШ ЗАПРОС':'ЛИЧНАЯ ПОДБОРКА',q?'Подходящие идеи':'Топ-10 товаров сезона',q?'Каталог идей с фильтрами по ориентировочной цене и бренду.':'Зимние идеи для дома, города и подарков — подборка обновляется вручную.'));var status=el('div','results-top');if(q){status.innerHTML='Ищем: <strong></strong> · '+collection.length+' идей';status.querySelector('strong').textContent='«'+q+'»'}else{status.textContent='Зимняя подборка · 10 редакционных идей · фильтруйте по цене и бренду'}intro.appendChild(status);results.appendChild(intro);
-    var grid=el('div','product-grid');renderGrid(grid,q?collection:season,true);results.appendChild(grid);
-    var seasonSection=el('section','seasonal');seasonSection.appendChild(sectionHeader('ВЫБОР РЕДАКЦИИ','Топ-10 товаров сезона','Зимняя подборка локальная: цены примерные, наличие не проверяется.',10));var seasonIntro=el('div','seasonal-intro');var text=el('div','');text.appendChild(el('b','','Зима — повод выбрать с умом'));text.appendChild(el('p','','Практичные вещи для тепла, уюта и небольших радостей.'));seasonIntro.appendChild(text);seasonIntro.appendChild(el('span','season-badge','ЗИМА · 2026'));seasonSection.appendChild(seasonIntro);var seasonGrid=el('div','product-grid seasonal-grid');renderGrid(seasonGrid,season,true);seasonSection.appendChild(seasonGrid);results.appendChild(seasonSection);
-    if(q){var storeSection=el('section','search-results');storeSection.appendChild(sectionHeader('ПРОДОЛЖИТЬ ПОИСК','Магазины','Открываем результаты поиска у продавцов; цены и наличие проверяйте на их сайтах.'));var key=cat==='all'?'x':cat,ranked=STORES.filter(function(s){return s.scores[key]>0}).sort(function(a,b){return b.scores[key]-a.scores[key]}),first=ranked.slice(0,3),rest=ranked.slice(3),storeList=el('div','store-list');first.forEach(function(s){storeList.appendChild(storeCard(s,q))});(showEveryStore?ranked.slice(3):[]).forEach(function(s){storeList.appendChild(storeCard(s,q))});storeSection.appendChild(storeList);if(rest.length&&!showEveryStore){var more=el('button','reset','Показать ещё магазины');more.type='button';more.style.marginTop='12px';more.addEventListener('click',function(){showEveryStore=true;render()});storeSection.appendChild(more)}results.appendChild(storeSection)}
-    if(!q){var inspiration=el('section','inspiration'),inner=el('div','inspiration-inner'),copy=el('div','');copy.appendChild(el('h2','','Находка дня'));copy.appendChild(el('p','','Случайная идея из каталога — без ИИ и внешних сервисов.'));inner.appendChild(copy);var button=el('button','random-button','Найти вдохновение');button.type='button';button.addEventListener('click',function(){var list=filteredProducts('all','',false);if(!list.length){input.focus();return}var choice=list[Math.floor(Math.random()*list.length)];input.value=choice.name;selectedCategory='all';render();results.scrollIntoView({behavior:'smooth',block:'start'})});inner.appendChild(button);inspiration.appendChild(inner);results.appendChild(inspiration)}
+  function renderCategories(active){categories.textContent='';CATEGORIES.forEach(function(c){var b=el('button','chip',c[1]);b.type='button';b.setAttribute('aria-pressed',String(c[0]===active));b.addEventListener('click',function(){selectedCategory=c[0];showEveryStore=false;render();if(c[0]!=='all')results.scrollIntoView({behavior:'smooth',block:'start'})});categories.appendChild(b)})}
+  function render(){var q=input.value.trim(),cat=activeCategory(q);renderCategories(cat);results.textContent='';var exact=filteredProducts(cat,q,false);var collection=exact.length||!q?exact:filteredProducts(cat,'',false);var season=filteredProducts('all','',true).slice(0,10);
+    var intro=el('div','');var title=q?'Подходящие идеи':cat==='all'?'Топ-10 товаров сезона':'Идеи: '+CATEGORY_NAMES[cat];var desc=q?(exact.length?'Идеи по запросу с фильтрами по примерной цене и бренду.':'Точных совпадений нет — показываем идеи из выбранной категории.'):'Выберите категорию — покажем подходящие идеи из локального каталога.';intro.appendChild(sectionHeader(q?'ВАШ ЗАПРОС':cat==='all'?'ЛИЧНАЯ ПОДБОРКА':'ВЫБРАННЫЙ РАЗДЕЛ',title,desc,collection.length));var status=el('div','results-top');if(q){var strong=el('strong','', '«'+q+'»');status.appendChild(document.createTextNode('Ищем: '));status.appendChild(strong);status.appendChild(document.createTextNode(' · '+collection.length+' идей'))}else if(cat==='all')status.textContent='Зимняя подборка · 10 редакционных идей · фильтруйте по цене и бренду';else status.textContent='Раздел «'+CATEGORY_NAMES[cat]+'» · '+collection.length+' идей · фильтры применяются автоматически';intro.appendChild(status);results.appendChild(intro);
+    var grid=el('div','product-grid');renderGrid(grid,q||cat!=='all'?collection:season,true);results.appendChild(grid);
+    var seasonSection=el('section','seasonal');seasonSection.appendChild(sectionHeader('ВЫБОР РЕДАКЦИИ','Топ-10 товаров сезона','Зимняя подборка локальная: цены примерные, наличие не проверяется.',season.length));var seasonIntro=el('div','seasonal-intro');var text=el('div','');text.appendChild(el('b','','Зима — повод выбрать с умом'));text.appendChild(el('p','','Практичные вещи для тепла, уюта и небольших радостей.'));seasonIntro.appendChild(text);seasonIntro.appendChild(el('span','season-badge','ЗИМА · 2026'));seasonSection.appendChild(seasonIntro);var seasonGrid=el('div','product-grid seasonal-grid');renderGrid(seasonGrid,season,true);seasonSection.appendChild(seasonGrid);results.appendChild(seasonSection);
+    if(q){var storeSection=el('section','search-results');storeSection.appendChild(sectionHeader('ПРОДОЛЖИТЬ ПОИСК','Магазины','Открываем результаты поиска у продавцов; цены и наличие проверяйте на их сайтах.'));var key=cat==='all'?'x':cat,ranked=STORES.filter(function(s){return s.scores[key]>0}).sort(function(a,b){return b.scores[key]-a.scores[key]}),first=ranked.slice(0,3),rest=ranked.slice(3),storeList=el('div','store-list');first.forEach(function(s){storeList.appendChild(storeCard(s,q))});if(showEveryStore)rest.forEach(function(s){storeList.appendChild(storeCard(s,q))});storeSection.appendChild(storeList);if(rest.length&&!showEveryStore){var more=el('button','reset','Показать ещё магазины');more.type='button';more.style.marginTop='12px';more.addEventListener('click',function(){showEveryStore=true;render()});storeSection.appendChild(more)}results.appendChild(storeSection)}
+    if(!q&&cat==='all'){var inspiration=el('section','inspiration'),inner=el('div','inspiration-inner'),copy=el('div','');copy.appendChild(el('h2','','Находка дня'));copy.appendChild(el('p','','Случайная идея из каталога — без ИИ и внешних сервисов.'));inner.appendChild(copy);var button=el('button','random-button','Найти вдохновение');button.type='button';button.addEventListener('click',function(){var list=filteredProducts('all','',false);if(!list.length){input.focus();return}var choice=list[Math.floor(Math.random()*list.length)];input.value=choice.name;selectedCategory='all';render();results.scrollIntoView({behavior:'smooth',block:'start'})});inner.appendChild(button);inspiration.appendChild(inner);results.appendChild(inspiration)}
   }
   $('search').addEventListener('submit',function(e){e.preventDefault();selectedCategory='all';showEveryStore=false;render();results.scrollIntoView({behavior:'smooth',block:'start'})});
   [minInput,maxInput,brandSelect].forEach(function(control){control.addEventListener('input',render);control.addEventListener('change',render)});
