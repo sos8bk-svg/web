@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Найдётся — поиск товаров по магазинам России</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#101115;--sf:#181A1F;--sf2:#1E2026;--ink:#EBE7DE;--mute:#9C9FA7;--line:#2B2E36;--gold:#D9C08F;--gold2:#B89B62;--on:#17130A;color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#F5F3EE;--sf:#FFFFFF;--sf2:#FBFAF7;--ink:#15130F;--mute:#6F6C65;--line:#DEDAD1;--gold:#8C6B2C;--gold2:#6F5320;--on:#FFFDF7;color-scheme:light}}
+:root[data-theme="light"]{--bg:#F5F3EE;--sf:#FFFFFF;--sf2:#FBFAF7;--ink:#15130F;--mute:#6F6C65;--line:#DEDAD1;--gold:#8C6B2C;--gold2:#6F5320;--on:#FFFDF7;color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Onest,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+main{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:36px 20px 64px}
+.logo{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:26px;letter-spacing:.04em;display:flex;align-items:center;gap:12px}
+.logo i{width:26px;height:1px;background:var(--gold);display:inline-block}
+h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400;font-size:clamp(46px,12vw,84px);line-height:.98;letter-spacing:-.02em;margin:64px 0 18px}
+.sub{color:var(--mute);margin:0 0 30px;max-width:44ch;font-size:17px}
+.search{display:flex;gap:10px;position:sticky;top:env(safe-area-inset-top,0px);padding:10px 0;background:var(--bg);z-index:5}
+.search input{flex:1;min-width:0;font:inherit;font-size:18px;padding:18px 22px;border:1px solid var(--line);border-radius:999px;background:var(--sf);color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s}
+.search input::placeholder{color:var(--mute)}
+.search input:focus{border-color:var(--gold);box-shadow:0 0 0 4px color-mix(in srgb,var(--gold) 20%,transparent)}
+.search button{font:inherit;font-weight:600;font-size:15px;padding:0 28px;border:0;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--on);cursor:pointer}
+.search button:focus-visible,.chip:focus-visible,.row:focus-visible,.more:focus-visible,.pick:focus-visible,.lk a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;font:inherit;font-size:14px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mute);cursor:pointer;transition:color .2s,border-color .2s}
+.chip:hover{color:var(--ink);border-color:var(--mute)}
+.chip[aria-pressed="true"]{color:var(--gold);border-color:var(--gold);background:color-mix(in srgb,var(--gold) 10%,transparent)}
+.hint{color:var(--mute);font-size:14px;margin:16px 0 0}
+h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:30px;font-weight:500;letter-spacing:-.01em;margin:48px 0 14px}
+.list{display:flex;flex-direction:column;gap:10px}
+.row{display:flex;align-items:center;gap:16px;padding:16px 20px;border:1px solid var(--line);border-radius:18px;background:var(--sf);color:inherit;text-decoration:none;transition:border-color .2s,transform .2s}
+.row:hover{border-color:var(--gold);transform:translateY(-1px)}
+.row.top{padding:22px 22px;background:linear-gradient(160deg,var(--sf2),var(--sf));border-color:color-mix(in srgb,var(--gold) 40%,var(--line))}
+.dot{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:transparent!important;border:1px solid var(--gold);color:var(--gold);font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:22px}
+.txt{flex:1;min-width:0}
+.txt b{display:block;font-size:17px;font-weight:600}
+.txt span{display:block;color:var(--mute);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.go{flex:none;font-size:14px;color:var(--gold)}
+.go::after{content:"\00a0\203a"}
+.more{margin-top:14px;font:inherit;font-size:14px;background:none;border:0;color:var(--gold);cursor:pointer;padding:6px 0}
+.ex{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pr{padding:22px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,var(--sf2),var(--sf))}
+.pr+.pr{margin-top:10px}
+.pr b{display:block;font-size:18px;font-weight:600}
+.pr p{margin:6px 0 0;color:var(--mute);font-size:14px}
+.pr .pc{color:var(--gold);font-family:"Cormorant Garamond",Georgia,serif;font-size:24px;font-weight:600;margin-top:10px}
+.lk{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.lk a{font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;transition:background .2s,color .2s}
+.lk a:hover{background:var(--gold);color:var(--on)}
+.pick{font:inherit;font-weight:600;padding:17px 20px;border:1px solid var(--gold);border-radius:999px;background:transparent;color:var(--gold);cursor:pointer;width:100%;transition:background .2s,color .2s}
+.pick:hover:not(:disabled){background:var(--gold);color:var(--on)}
+.pick:disabled{opacity:.6}
+.note{color:var(--mute);font-size:13px;margin:12px 0 0}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--mute);font-size:13px;max-width:60ch}
+@media (max-width:420px){.go{display:none}.search button{padding:0 20px}.row.top{padding:18px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+body::before{content:"";position:fixed;inset:-20%;pointer-events:none;z-index:0;background:radial-gradient(40% 35% at 25% 20%,color-mix(in srgb,var(--gold) 22%,transparent),transparent 70%),radial-gradient(35% 30% at 78% 15%,color-mix(in srgb,#8A63B8 22%,transparent),transparent 70%),radial-gradient(40% 35% at 60% 85%,color-mix(in srgb,#3F8F8A 16%,transparent),transparent 70%);filter:blur(30px);animation:drift 32s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate3d(4%,3%,0) scale(1.1)}}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.logo,h1,.sub,.search{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+h1{animation-delay:.1s}.sub{animation-delay:.2s}.search{animation-delay:.3s}
+.search{background:color-mix(in srgb,var(--bg) 72%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.row,.pr,.tile{-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.row{background:color-mix(in srgb,var(--sf) 72%,transparent);border-radius:22px}
+.pr{border-radius:22px;background:color-mix(in srgb,var(--sf) 78%,transparent)}
+.row.top{background:linear-gradient(160deg,color-mix(in srgb,var(--gold) 10%,var(--sf)),color-mix(in srgb,var(--sf) 80%,transparent))}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tile{position:relative;overflow:hidden;text-align:left;font:inherit;color:var(--ink);padding:22px 20px;min-height:140px;border-radius:24px;border:1px solid var(--line);cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(150deg,hsl(var(--h) 45% 55%/.2),transparent 75%),color-mix(in srgb,var(--sf) 78%,transparent);transition:transform .3s,border-color .3s}
+.tile::after{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,hsl(var(--h) 60% 65%/.45),transparent 70%);transition:transform .5s}
+.tile:hover{transform:translateY(-3px);border-color:var(--gold)}
+.tile:hover::after{transform:scale(1.5)}
+.tile:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.tile b{font-family:"Cormorant Garamond",Georgia,serif;font-size:25px;font-weight:500;line-height:1.1;position:relative}
+.tile span{color:var(--mute);font-size:13px;margin-top:6px;position:relative}
+.sur{margin-top:20px;padding:20px;border-radius:24px;border:1px dashed var(--gold);text-align:center;background:color-mix(in srgb,var(--gold) 6%,transparent)}
+.sur p{margin:0 0 14px;color:var(--mute);font-size:15px}
+.sur .pick{width:auto;padding:15px 30px}
+.sur .pr{text-align:left;margin-top:16px}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}.logo,h1,.sub,.search{animation:none}}
+.hero-art{position:absolute;right:4px;top:84px;width:clamp(130px,30vw,230px);pointer-events:none;z-index:0;animation:float 8s ease-in-out infinite alternate;filter:drop-shadow(0 0 18px rgba(217,192,143,.25))}
+@keyframes float{to{transform:translateY(-12px) rotate(2deg)}}
+h1,.sub{position:relative;z-index:1}
+@media (max-width:560px){.hero-art{opacity:.32;top:72px;width:160px}}
+.ti{position:absolute;right:16px;top:16px;width:54px;height:54px;color:var(--gold);z-index:1}
+.ti svg,.ic svg{width:100%;height:100%;display:block}
+.pr{position:relative}
+.pr .ic{position:absolute;right:18px;top:18px;width:46px;height:46px;color:var(--gold);opacity:.85}
+.pr b,.pr>p:not(.pc){padding-right:60px}
+@media (prefers-reduced-motion:reduce){.hero-art{animation:none}}
+.row{position:relative}
+.row::before,.pr::before,.tile::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--gold) 17%,transparent),transparent 60%)}
+.row:hover::before,.pr:hover::before,.tile:hover::before{opacity:1}
+.rv{opacity:0;translate:0 18px;transition:opacity .6s,translate .6s,transform .3s,border-color .3s,background .3s}
+.rv.in{opacity:1;translate:0 0}
+.sug{position:absolute;left:0;right:0;top:calc(100% - 4px);background:color-mix(in srgb,var(--sf) 94%,transparent);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:22px;padding:8px;box-shadow:0 22px 50px rgba(0,0,0,.35);z-index:30;display:none}
+.sug.on{display:block;animation:rise .25s both}
+.sug button{display:flex;justify-content:space-between;gap:12px;width:100%;font:inherit;color:var(--ink);background:none;border:0;padding:12px 14px;border-radius:14px;cursor:pointer;text-align:left}
+.sug button:hover,.sug button.act{background:color-mix(in srgb,var(--gold) 13%,transparent)}
+.sug small{color:var(--mute);font-size:13px;align-self:center}
+.mql{margin:34px 0 10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.mq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.mqt{display:flex;gap:8px;width:max-content;padding-right:8px;animation:mq 50s linear infinite}
+.mq:hover .mqt{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.sk{height:130px;border-radius:22px;border:1px solid var(--line);background-color:var(--sf);background-image:linear-gradient(100deg,transparent 30%,color-mix(in srgb,var(--gold) 14%,transparent) 50%,transparent 70%);background-size:200% 100%;animation:shim 1.5s linear infinite}
+.sk+.sk{margin-top:10px}
+@keyframes shim{from{background-position:200% 0}to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.mqt,.sk{animation:none}.mq{overflow-x:auto}.rv{opacity:1;translate:none}}
+</style>
+</head>
+<body>
+<main>
+  <div class="logo">Найдётся<i></i></div>
+  <svg class="hero-art" viewBox="0 0 220 220" fill="none" stroke="url(#g1)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E6D3A6"/><stop offset="1" stop-color="#A98FD0"/></linearGradient></defs>
+<path d="M60 88h100l-9 112H69z"/><path d="M85 88V70a25 25 0 0 1 50 0v18"/><path d="M60 88l4 112M160 88l-4 112" opacity=".35"/>
+<rect x="128" y="128" width="64" height="56" rx="3"/><path d="M128 148h64M160 128v56"/><path d="M160 128c-8-14-24-12-22-2s16 6 22 2zM160 128c8-14 24-12 22-2s-16 6-22 2z"/>
+<path d="M36 40l3 9 9 3-9 3-3 9-3-9-9-3 9-3zM190 52l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="url(#g1)" stroke="none"/>
+<circle cx="40" cy="150" r="4"/><circle cx="198" cy="100" r="3"/></svg>
+
+  <h1>Что вы ищете?</h1>
+  <p class="sub">Назовите товар — мы подберём конкретные модели и подскажем, в каком магазине России их лучше купить.</p>
+
+  <form class="search" id="f" role="search" action="javascript:void(0)">
+    <input id="q" type="search" placeholder="Например, кроссовки или дрель" autocomplete="off" enterkeyhint="search" aria-label="Название товара">
+    <button type="submit" id="go">Найти</button>
+  </form>
+  <div class="chips" id="chips" role="group" aria-label="Категория"></div>
+
+  <div id="out"></div>
+
+  <footer>Найдётся не продаёт товары и не хранит цены: каждая ссылка открывает поиск на сайте магазина. Цены и наличие проверяйте там.</footer>
+</main>
+
+<script>
+(function(){
+var CATS=[['all','Все'],['e','Электроника'],['f','Одежда и обувь'],['b','Красота'],['h','Дом и ремонт'],['g','Продукты'],['c','Детям'],['k','Книги'],['s','Спорт'],['a','Авто'],['p','Аптеки'],['u','С рук']];
+var CN={};CATS.forEach(function(c){CN[c[0]]=c[1]});
+var KW={
+e:/телефон|iphone|айфон|samsung|самсунг|xiaomi|ноутбук|наушник|телевизор|планшет|видеокарт|процессор|монитор|клавиатур|мышь|ssd|роутер|пылесос|холодильник|стиральн|чайник|смартфон|часы|камера|колонк|принтер|микроволнов|playstation|ps5/i,
+f:/кроссовк|куртк|джинс|платье|футболк|ботинк|сумк|рюкзак|пальто|худи|свитер|обувь|костюм|кеды|юбк|бель[её]|шапк|носки|сапог/i,
+b:/крем|шампун|духи|парфюм|помад|тушь|маска для|сыворотк|косметик|тональн|лак для/i,
+h:/дрель|шуруп|краск|обои|плитк|ламинат|диван|стол|стул|кроват|шкаф|матрас|ламп|светильник|смесител|инструмент|перфоратор|штор|ковер|посуда|сковород|кастрюл|подушк/i,
+g:/молоко|хлеб|сыр|мясо|кофе|чай|шоколад|овощ|фрукт|продукт|колбас|рыба|яйц|крупа|макарон/i,
+k:/книг|роман|учебник|манга|комикс|энциклопед/i,
+a:/шины|шина|моторное масло|аккумулятор|колодки|автомобил|дворник|запчаст|автомоб|антифриз/i,
+s:/гантел|велосипед|палатк|лыж|мяч|тренажер|спальник|беговая|самокат|коньки|штанг/i,
+c:/коляск|подгузник|игрушк|конструктор|лего|детск|пазл|автокресл/i,
+p:/таблетк|витамин|лекарств|мазь|сироп|аспирин|парацетамол|ибупрофен|капли/i,
+u:/б\/у|с рук|подержан|бывш/i
+};
+/* id, название, описание, адрес поиска, цвет, баллы по категориям (x — для «Все») */
+var S=[
+['wb','Wildberries','Одежда, дом, красота — огромный выбор','https://www.wildberries.ru/catalog/0/search.aspx?search=','#B5179E','x9 f9 b8 h8 c8 s7 e5 k5 a4 g2'],
+['oz','Ozon','Почти всё: техника, книги, товары для дома','https://www.ozon.ru/search/?text=','#005BFF','x9 e8 f7 b7 h8 c8 s7 k8 a6 g4'],
+['ym','Яндекс Маркет','Сравнение цен в разных магазинах','https://market.yandex.ru/search?text=','#FC3F1D','x9 e9 f5 b6 h8 c7 s6 k4 a5 g3'],
+['mm','Мегамаркет','Маркетплейс с бонусами СберСпасибо','https://megamarket.ru/catalog/?q=','#6A1B9A','x7 e8 f4 b5 h7 c6 s5 k3 a4 g5'],
+['av','Авито','Новое и б/у от частных продавцов','https://www.avito.ru/rossiya?q=','#0AF','x8 u10 a9 e7 h7 s7 f5 c6 k4'],
+['al','AliExpress Россия','Недорогие товары, мелочи, гаджеты','https://aliexpress.ru/wholesale?SearchText=','#E62E04','x6 e6 f5 h6 a6 c5 s4'],
+['dns','DNS','Компьютеры, смартфоны, бытовая техника','https://www.dns-shop.ru/search/?q=','#F7931E','x3 e10 h3'],
+['mv','М.Видео','Техника и электроника','https://www.mvideo.ru/product-list-page?q=','#E30611','x3 e9 h6'],
+['ci','Ситилинк','Компьютерные комплектующие и техника','https://www.citilink.ru/search/?text=','#FF6600','x3 e9'],
+['el','Эльдорадо','Бытовая техника и электроника','https://www.eldorado.ru/search/catalog.php?q=','#0066B3','x3 e8 h6'],
+['lm','Lamoda','Одежда, обувь, аксессуары','https://www.lamoda.ru/catalogsearch/result/?q=','#111111','x3 f10 s6 b4'],
+['ga','Золотое яблоко','Парфюмерия и косметика','https://goldapple.ru/catalogsearch/result/?q=','#B8860B','x2 b10'],
+['le','Летуаль','Косметика и парфюмерия','https://www.letu.ru/s/search?q=','#2E8B57','x2 b9'],
+['lr','Леруа Мерлен','Ремонт, стройка, сад и дом','https://leroymerlin.ru/search/?q=','#78BE20','x3 h10 a3'],
+['pe','Петрович','Стройматериалы и инструменты','https://moscow.petrovich.ru/search/?q=','#1E6FD9','x2 h9'],
+['hf','Hoff','Мебель и товары для дома','https://hoff.ru/search/?q=','#D6001C','x2 h8'],
+['pk','Перекрёсток','Продукты с доставкой','https://www.perekrestok.ru/cat/search?search=','#00833E','x2 g8'],
+['vv','ВкусВилл','Продукты и готовая еда','https://vkusvill.ru/search/?q=','#4CAF50','x2 g9'],
+['dm','Детский мир','Всё для детей: игрушки, коляски, одежда','https://www.detmir.ru/search/results?q=','#0099E5','x2 c10'],
+['cg','Читай-город','Книги и канцелярия','https://www.chitai-gorod.ru/search?phrase=','#E4002B','x2 k10'],
+['lb','Лабиринт','Книги, игры, товары для детей','https://www.labirint.ru/search/','#F58220','x2 k8 c4'],
+['sp','Спортмастер','Спортивные товары и одежда','https://www.sportmaster.ru/catalog/?q=','#0A8A3C','x2 s10 f5'],
+['ex','Exist','Автозапчасти и автотовары','https://exist.ru/Price/?pcode=','#E31E24','x2 a10'],
+['ap','Apteka.ru','Лекарства и сравнение цен в аптеках','https://apteka.ru/search/?q=','#00A3AD','x1 p10'],
+['zd','Здравсити','Аптека с доставкой','https://zdravcity.ru/search/?what=','#6BB536','x1 p9']
+];
+S.forEach(function(s){var m={};s[5].split(' ').forEach(function(t){m[t[0]]=+t.slice(1)});s.sc=m});
+
+var $=function(i){return document.getElementById(i)};
+var inp=$('q'),out=$('out'),chipsEl=$('chips');
+var manual='all',showAll=false,query='';
+
+function detect(q){for(var k in KW){if(KW[k].test(q))return k}return null}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+
+function row(s,q,top){
+  var a=el('a','row'+(top?' top':''));
+  a.href=s[3]+encodeURIComponent(q);
+  a.target='_blank';a.rel='noopener noreferrer';
+  var d=el('div','dot',s[1][0]);d.style.background=s[4];d.setAttribute('aria-hidden','true');
+  var t=el('div','txt');t.appendChild(el('b',null,s[1]));t.appendChild(el('span',null,s[2]));
+  a.appendChild(d);a.appendChild(t);a.appendChild(el('div','go','Искать'));
+  return a;
+}
+function group(title,items,q,top){
+  out.appendChild(el('h2',null,title));
+  var l=el('div','list');items.forEach(function(s){l.appendChild(row(s,q,top))});out.appendChild(l);
+}
+
+function renderChips(active){
+  chipsEl.textContent='';
+  CATS.forEach(function(c){
+    var b=el('button','chip',c[1]);b.type='button';
+    b.setAttribute('aria-pressed',String(c[0]===active));
+    b.onclick=function(){manual=c[0];showAll=false;render()};
+    chipsEl.appendChild(b);
+  });
+}
+
+function render(){
+  out.textContent='';
+  var q=query.trim();
+  var det=q?detect(q):null;
+  var cat=manual!=='all'?manual:(det||'all');
+  renderChips(cat);
+
+  if(!q){home();return}
+
+  if(cat!=='all'){out.appendChild(el('p','hint','Категория: '+CN[cat]+(manual==='all'?' — определили по запросу. Можно выбрать другую выше.':'.')))}
+  else{out.appendChild(el('p','hint','Категорию не определили — показываем универсальные площадки. Выберите её выше, чтобы сузить выбор.'))}
+
+  var key=cat==='all'?'x':cat;
+  var ranked=S.filter(function(s){return (s.sc[key]||0)>0}).sort(function(a,b){return (b.sc[key]||0)-(a.sc[key]||0)});
+  var top=ranked.slice(0,3),rest=ranked.slice(3);
+  exBlock(q,cat,top);
+  group('Начните отсюда',top,q,true);
+  if(rest.length){
+    var rr=showAll?S.filter(function(s){return top.indexOf(s)<0}):rest;
+    group(showAll?'Все остальные магазины':'Ещё варианты',rr,q,false);
+  }
+  if(cat!=='all'&&!showAll){
+    var m=el('button','more','Показать все магазины');m.type='button';
+    m.onclick=function(){showAll=true;render()};out.appendChild(m);
+  }
+  var web=[
+    ['ya','Яндекс','Найти товар по всему интернету','https://yandex.ru/search/?text=','#FC3F1D'],
+    ['gg','Google','Общий поиск в интернете','https://www.google.com/search?q=','#4285F4'],
+    ['yi','Яндекс Картинки','Посмотреть, как выглядит товар','https://yandex.ru/images/search?text=','#FFB400']
+  ];
+  group('Поиск по интернету',web,q,false);
+}
+
+var sample=null,exCache={};
+try{if(window.claude&&claude.use)claude.use('sample').then(function(s){sample=s}).catch(function(){})}catch(e){}
+
+var ICON={
+lamp:'<path d="M22 14h20l6 18H16z"/><path d="M32 32v18M24 52h16"/>',
+chair:'<path d="M24 8h16v22H24z"/><path d="M18 30h28v6H18zM32 36v12M20 56l12-8 12 8"/>',
+shoe:'<path d="M8 44c0-6 4-8 8-8l8-14 6 4 4-2 6 10c6 2 12 4 12 10v2H8zM8 52h48"/><path d="M26 26l4 4M32 22l4 4"/>',
+perfume:'<path d="M20 28h24v24H20z"/><path d="M28 20h8v8h-8zM26 10h12v10H26z"/><path d="M26 36v10"/>',
+case:'<path d="M12 22h40v30H12z"/><path d="M24 22v-6h16v6M24 22v30M40 22v30M20 56v-4M44 56v-4"/>',
+speaker:'<path d="M20 8h24v48H20z"/><circle cx="32" cy="22" r="5"/><circle cx="32" cy="40" r="9"/>',
+cup:'<path d="M14 28h28v12a12 12 0 0 1-12 12h-4a12 12 0 0 1-12-12z"/><path d="M42 32h4a6 6 0 0 1 0 12h-4M22 12c-3 4 3 6 0 10M32 12c-3 4 3 6 0 10"/>',
+blocks:'<path d="M10 36h22v18H10zM32 36h22v18H32zM21 18h22v18H21z"/>',
+book:'<path d="M10 14h18a4 4 0 0 1 4 4v34a4 4 0 0 0-4-4H10zM54 14H36a4 4 0 0 0-4 4v34a4 4 0 0 1 4-4h18z"/>',
+bag:'<path d="M14 24h36l-3 30H17z"/><path d="M24 24v-4a8 8 0 0 1 16 0v4"/>'};
+var CI={e:'speaker',f:'shoe',b:'perfume',h:'lamp',g:'cup',c:'blocks',k:'book',s:'shoe',a:'case'};
+var curCat='all';
+function ico(cls,k){var d=el('span',cls);d.innerHTML='<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICON[k]+'</svg>';return d}
+var autoPick=false;
+var TILES=[['Уютный дом','плед','Пледы, свечи, лампы',35,'lamp'],['Рабочее место','эргономичное кресло','Кресла и столы',210,'chair'],['Для пробежки','беговые кроссовки','Кроссовки и часы',150,'shoe'],['Подарок маме','духи женские','Ароматы и уход',320,'perfume'],['В путешествие','чемодан','Чемоданы и рюкзаки',190,'case'],['Умный дом','умная колонка','Колонки и датчики',260,'speaker'],['Кофе дома','кофемашина','Кофемашины и кофе',25,'cup'],['Детям','конструктор','Игры и развитие',50,'blocks']];
+function go(t){inp.value=t;query=t;manual='all';showAll=false;autoPick=true;render();try{window.scrollTo({top:$('f').offsetTop-8,behavior:'smooth'})}catch(e){}}
+function home(){
+  var TR=['кроссовки Nike','кофемашина','iPhone 15','детская коляска','зимние шины','робот-пылесос','рюкзак','наушники','плед','дрель','духи','чемодан'];
+  out.appendChild(el('div','mql','Сейчас ищут'));
+  var mq=el('div','mq'),tr=el('div','mqt');
+  [0,1].forEach(function(k){TR.forEach(function(t){var b=el('button','chip',t);b.type='button';if(k)b.tabIndex=-1;b.onclick=function(){go(t)};tr.appendChild(b)})});
+  mq.appendChild(tr);out.appendChild(mq);
+  out.appendChild(el('h2',null,'Подборки для вдохновения'));
+  var g=el('div','tiles');
+  TILES.forEach(function(t){
+    var b=el('button','tile');b.type='button';b.style.setProperty('--h',t[3]);
+    b.appendChild(ico('ti',t[4]));b.appendChild(el('b',null,t[0]));b.appendChild(el('span',null,t[2]));
+    b.onclick=function(){go(t[1])};g.appendChild(b);
+  });
+  out.appendChild(g);
+  var s=el('div','sur');s.appendChild(el('p',null,'Не знаете, что искать? Пусть находка сама найдётся.'));
+  var b=el('button','pick','Пусть найдётся');b.type='button';s.appendChild(b);
+  var box=el('div');s.appendChild(box);out.appendChild(s);
+  b.onclick=function(){
+    if(!sample){box.textContent='';box.appendChild(el('p','note','Эта функция работает, когда страница открыта в Claude.'));return}
+    b.disabled=true;b.textContent='Находка ищется…';box.textContent='';box.appendChild(skel(1));
+    var pr='Предложи одну необычную, но полезную и реально существующую покупку, которую можно купить в России (для себя или в подарок, до 10 000 рублей). Для разнообразия учти число '+Math.random()+'. Ответь только JSON-массивом из одного объекта без пояснений и без markdown: [{"name":"точное название для поиска в магазине","why":"одна фраза, чем она хороша","price":"примерный диапазон, например: от 2 000 до 3 500 ₽"}]';
+    sample.json(pr,{modelTier:'quick',cache:false}).then(function(r){
+      if(!Array.isArray(r)||!r[0]||!r[0].name)throw 0;
+      curCat='all';products([r[0]],S.slice(0,3),box);
+    }).catch(function(e){box.textContent='';box.appendChild(el('p','note',e&&e.code==='not_granted'?'Нужно разрешить Claude подбирать находки.':'Не получилось. Попробуйте ещё раз.'))}).then(function(){b.disabled=false;b.textContent='Ещё одну находку'});
+  };
+}
+(function(){
+  var PH=['кроссовки Nike','кофемашина','детская коляска','зимние шины','iPhone 15','подарок маме'];
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var i=0,j=0,del=false;
+  function t(){
+    if(document.activeElement===inp||inp.value){setTimeout(t,900);return}
+    var w=PH[i];j+=del?-1:1;inp.placeholder='Например, '+w.slice(0,j);
+    var d=del?35:80;
+    if(!del&&j===w.length){del=true;d=1500}else if(del&&j===0){del=false;i=(i+1)%PH.length;d=350}
+    setTimeout(t,d);
+  }
+  inp.addEventListener('focus',function(){inp.placeholder='Название товара'});
+  t();
+})();
+
+function products(list,top,box){
+  box.textContent='';
+  list.forEach(function(p){
+    var c=el('div','pr');c.appendChild(ico('ic',CI[curCat]||'bag'));c.appendChild(el('b',null,p.name));
+    if(p.why)c.appendChild(el('p',null,p.why));
+    if(p.price)c.appendChild(el('p','pc',p.price));
+    var l=el('div','lk');
+    top.forEach(function(s){var a=el('a',null,'Искать в '+s[1]);a.href=s[3]+encodeURIComponent(p.name);a.target='_blank';a.rel='noopener noreferrer';l.appendChild(a)});
+    c.appendChild(l);box.appendChild(c);
+  });
+  box.appendChild(el('p','note','Цены — примерный ориентир, не данные магазинов. Актуальную цену и наличие смотрите по ссылке.'));
+}
+function exBlock(q,cat,top){
+  curCat=cat;var sk=null;
+  out.appendChild(el('h2',null,'Примеры товаров'));
+  var box=el('div');out.appendChild(box);
+  var k=cat+'|'+q.toLowerCase();
+  if(exCache[k]){products(exCache[k],top,box);return}
+  var b=el('button','pick','Подобрать примеры товаров');b.type='button';box.appendChild(b);if(autoPick){autoPick=false;setTimeout(function(){b.click()},0)}
+  b.onclick=function(){
+    if(!sample){box.appendChild(el('p','note','Подбор работает, только когда страница открыта в Claude. Поиск по магазинам ниже работает везде.'));return}
+    b.disabled=true;b.textContent='Подбираю…';sk=skel(3);box.appendChild(sk);
+    var pr='Ты помощник по покупкам в России. Запрос покупателя: «'+q+'»'+(cat!=='all'?' (категория: '+CN[cat]+')':'')+'. Назови 5 конкретных, реально существующих и хорошо известных в России товаров или моделей по этому запросу, разного уровня цены. Называй только то, в чём уверен, ничего не выдумывай. Ответь только JSON-массивом без пояснений и без markdown: [{"name":"точное название для поиска в магазине","why":"одна короткая фраза, чем хорош","price":"примерный диапазон, например: от 5 000 до 8 000 ₽"}]';
+    sample.json(pr,{modelTier:'quick'}).then(function(r){
+      if(!Array.isArray(r)||!r.length)throw 0;
+      exCache[k]=r.slice(0,6).filter(function(p){return p&&p.name});products(exCache[k],top,box);
+    }).catch(function(e){
+      if(sk&&sk.parentNode)sk.parentNode.removeChild(sk);b.disabled=false;b.textContent='Подобрать примеры товаров';
+      box.appendChild(el('p','note',e&&e.code==='not_granted'?'Нужно разрешить Claude подбирать примеры.':'Не получилось подобрать примеры. Попробуйте ещё раз или откройте магазины ниже.'));
+    });
+  };
+}
+
+var RED=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function skel(n){var d=el('div');for(var i=0;i<n;i++)d.appendChild(el('div','sk'));return d}
+var SUG=[['кроссовки Nike','f'],['кроссовки беговые','s'],['куртка зимняя','f'],['джинсы мужские','f'],['рюкзак городской','f'],['iPhone 15','e'],['наушники беспроводные','e'],['ноутбук для работы','e'],['телевизор 55 дюймов','e'],['пылесос робот','e'],['смартфон Samsung','e'],['игровая видеокарта','e'],['кофемашина','h'],['плед флисовый','h'],['дрель аккумуляторная','h'],['диван угловой','h'],['матрас ортопедический','h'],['духи женские','b'],['крем для лица','b'],['шампунь','b'],['детская коляска','c'],['конструктор Lego','c'],['подгузники','c'],['зимние шины','a'],['масло моторное','a'],['велосипед горный','s'],['палатка туристическая','s'],['книга Мастер и Маргарита','k'],['витамины','p'],['кофе в зёрнах','g'],['чемодан','h']];
+var sug=el('div','sug');sug.setAttribute('role','listbox');$('f').appendChild(sug);
+var act=-1,items=[];
+function hideSug(){sug.classList.remove('on');act=-1}
+function pick(t){inp.value=t;query=t;manual='all';showAll=false;hideSug();render();try{window.scrollTo({top:$('f').offsetTop-8,behavior:'smooth'})}catch(e){}}
+function showSug(){
+  var v=inp.value.trim().toLowerCase();if(v.length<2){hideSug();return}
+  items=SUG.filter(function(s){return s[0].toLowerCase().indexOf(v)>-1}).slice(0,5);
+  if(!items.length){hideSug();return}
+  sug.textContent='';act=-1;
+  items.forEach(function(s){var b=el('button');b.type='button';b.appendChild(el('span',null,s[0]));b.appendChild(el('small',null,CN[s[1]]));b.addEventListener('pointerdown',function(e){e.preventDefault();pick(s[0])});sug.appendChild(b)});
+  sug.classList.add('on');
+}
+inp.addEventListener('input',showSug);
+inp.addEventListener('blur',function(){setTimeout(hideSug,120)});
+inp.addEventListener('keydown',function(e){
+  if(!sug.classList.contains('on'))return;var bs=sug.children;
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();act=(act+(e.key==='ArrowDown'?1:-1)+bs.length)%bs.length;for(var i=0;i<bs.length;i++)bs[i].classList.toggle('act',i===act)}
+  else if(e.key==='Enter'&&act>-1){e.preventDefault();pick(items[act][0])}
+  else if(e.key==='Escape')hideSug();
+});
+/* подсветка под курсором */
+out.addEventListener('pointermove',function(e){var t=e.target.closest&&e.target.closest('.row,.pr,.tile');if(!t)return;var r=t.getBoundingClientRect();t.style.setProperty('--mx',(e.clientX-r.left)+'px');t.style.setProperty('--my',(e.clientY-r.top)+'px')});
+/* плавное появление при прокрутке */
+if(!RED&&'IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){var n=0;es.forEach(function(en){if(!en.isIntersecting)return;var t=en.target;io.unobserve(t);t.style.transitionDelay=(n++*70)+'ms';t.classList.add('in');setTimeout(function(){t.style.transitionDelay=''},900)})},{threshold:.08});
+  new MutationObserver(function(){out.querySelectorAll('.row:not(.rv),.pr:not(.rv),.tile:not(.rv),.sur:not(.rv),h2:not(.rv)').forEach(function(t){t.classList.add('rv');io.observe(t)})}).observe(out,{childList:true,subtree:true});
+}
+
+$('f').addEventListener('submit',function(e){
+  e.preventDefault();query=inp.value;showAll=false;hideSug();render();
+  try{if(query.trim())window.scrollTo({top:$('f').offsetTop-8,behavior:'smooth'})}catch(x){}
+});
+render();
+})();
+</script>
+</body>
+</html>
